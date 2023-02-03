@@ -37,7 +37,7 @@
                                                 };
                                                 ?>
 
-                                              <small>Категорія: <a href="/article.php?categorie=<?php echo $post["categorie_id"] ?>"><?php echo $cat_title; ?></a></small>
+                                              <small>Категорія: <a href="categories.php?id=<?php echo $post["categorie_id"] ?>"><?php echo $cat_title; ?></a></small>
                                           </div>
 
 
@@ -80,7 +80,7 @@
                                                 };
                                                 ?>
 
-                                              <small>Категорія: <a href="/article.php?categorie=<?php echo $post["categorie_id"] ?>"><?php echo $cat_title; ?></a></small>
+                                              <small>Категорія: <a href="categories.php?id=<?php echo $post["categorie_id"] ?>"><?php echo $cat_title; ?></a></small>
                                           </div>
 
 
@@ -122,7 +122,7 @@
                                                 };
                                                 ?>
 
-                                              <small>Категорія: <a href="/article.php?categorie=<?php echo $post["categorie_id"] ?>"><?php echo $cat_title; ?></a></small>
+                                              <small>Категорія: <a href="categories.php?id=<?php echo $post["categorie_id"] ?>"><?php echo $cat_title; ?></a></small>
                                           </div>
 
 
