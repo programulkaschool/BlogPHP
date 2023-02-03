@@ -1,0 +1,350 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#header .header__top {
+    padding: 37px 0;
+   
+}
+
+#footer{
+    padding: 37px 0;
+    background-color: #ebebeb;
+}
+
+#footer .container, .header__top .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__menu ul li, .header__top__menu ul li {
+    display: inline-block;
+}
+
+
+.footer__menu ul li a,  .header__top__menu ul li a {
+    padding: 25px;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.header__bottom {
+    height: 50px;
+    background-color: #000;
+    margin-bottom: 30px;
+}
+
+.header__bottom li {
+    display: inline-block;
+    height: 100%;
+}
+
+.header__bottom ul {
+    height: 50px;
+}
+
+.header__bottom nav ul>li>a {
+    height: 100%;
+    color: #fff;
+    padding: 0 32px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* CONTENT */
+
+.block {
+    background-color: #ebebeb;
+    padding: 36px 25px;
+    margin-bottom: 30px;
+}
+
+.block>a {
+    font-size: 20px;
+    color: #000;
+    float: right;
+}
+
+.block a:hover {
+    color: #000;
+}
+
+.block .block__content {
+    padding-top: 40px;
+}
+
+.articles.articles__horizontal {
+    font-size: 0;
+}
+
+.articles.articles__horizontal .article {
+    width: 50%;
+    display: inline-block;
+    margin-bottom: 22px;
+    font-size: 16px;
+    padding: 12px;
+    vertical-align: top;
+}
+
+.articles .article .article_image {
+    width: 125px;
+    height: 125px;
+    overflow: hidden;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.articles .article .article__info {
+    margin-left: 125px;
+    padding-left: 21px;
+}
+
+.articles .article .article__info>a {
+    color: #000;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.articles .article .article__info>.article__info__meta {
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 9px;
+    margin-bottom: 13px;
+}
+
+.articles .article .article__info>.article__info__meta a {
+    color: #000;
+}
+
+.articles .article .article__info>.article__info__preview {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.articles__vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+/* article */
+
+.photo__content{
+    max-width: 100%;
+    max-height: 700px;
+}
+
+.articles.articles__vertical .article {
+    margin-bottom: 22px;
+}
+
+.full-text{
+    margin-top: 22px;
+    font-size: 18px;
+    padding: 12px 0;
+    line-height: 30px;
+}
+
+
+.form__control{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.form__group{
+    margin-bottom: 20px;
+}
+
+.form__group input[type="submit"]{
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 3px solid white;
+    transition: all 0.3s ease;
+}
+
+.form__group input[type="submit"]:hover{
+    background-color: rgba(0, 0, 0, 1);
+}
+
+
+
+
+
+@media (max-width: 1000px) {
+    .articles.articles__horizontal .article{
+        width: 100%;
+    }
+}
