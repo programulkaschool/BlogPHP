@@ -30,7 +30,7 @@
                                                         break;
                                                     };
                                                 };?>
-                                                <small>Категорія: <a href="/article.php?categorie=<?php echo $articles["categorie_id"];?>"><?php echo $cat_title;?></a></small>
+                                                <small>Категорія: <a href="/catgeories.php?id=<?php echo $articles["categorie_id"];?>"><?php echo $cat_title;?></a></small>
                                             </div>
 
 
