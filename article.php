@@ -88,24 +88,26 @@
                         <h3>Добавити коментар
                         </h3>
                         <div class="block__content">
-                            <form action="#" class="form">
+                            <form id_page="<?php echo $articles_single_post['id'];?>" id="form_comments" method="post" action="article.php?id=<?php echo $articles_single_post['id'];?>#comments-add-form" class="form">
                                 <div class="form__group">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" class="form__control name_my_input" placeholder="Ім'я">
+                                            <input type="text" class="form__control name_my_input" name="name" placeholder="Ім'я">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form__control nickname_my_input" placeholder="Нікнейм">
+                                            <input type="text" class="form__control nickname_my_input" name="nickname" placeholder="Нікнейм">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form__group">
-                                    <textarea name="text" class="form__control text_my_input" placeholder="Опис..."></textarea>
+                                    <textarea name="text" class="form__control text_my_input" name="text" placeholder="Опис..."></textarea>
                                 </div>
                                 <div class="form__group">
                                     <input type="submit" class="form__control" value="Добавити коментар">
                                 </div>
+                                <div class="submit_div" style="padding: 20px; background-color: black; color:white; cursor: pointer;"> My button</div>
+                                <div id="position_button"> TXT BUTTON</div>
                             </form>
                         </div>
                     </div>

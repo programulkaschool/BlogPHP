@@ -50,5 +50,37 @@ jQuery(document).ready(function () {
     //         jQuery('.category-all').append("<p>"+ jQuery(this).text() +"</p>")
     //     });
     // });
+     var val_inp_com = "";
+     var name_inp_com = "";
+     var my_inp_obj = {};
+     var page_id;
+    jQuery("body").on("click", ".submit_div", function () {
+
+        
+        jQuery("#form_comments input[type='text'], #form_comments textarea").each(function () {
+            val_inp_com = jQuery(this).val();
+            name_inp_com = jQuery(this).attr("name");
+            my_inp_obj[name_inp_com] = val_inp_com;
+           
+        });
+
+        page_id = jQuery("#form_comments").attr("id_page");
+        
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: {my_inp_obj: my_inp_obj, page_id: page_id},
+            success: function(data, status, xhr){
+                jQuery('#position_button').html(data);
+            },
+            error: function(jqXhr, textStatus, errorMessage){
+                jQuery('#position_button').append('Error' + errorMessage);
+            }
+        });
+        
+    });
+
+    
+    
 });
 
