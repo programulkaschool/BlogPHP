@@ -60,7 +60,7 @@
 
 
                                                 <div class="article__info__preview">
-                                                <?php echo $com["text"]; ?>
+                                                    <?php echo $com["text"]; ?>
                                                 </div>
                                             </div>
                                         </article>
@@ -80,14 +80,14 @@
                         <a>Добавити коментар</a>
 
                         <div class="block__content">
-                            <form action="#" class="form">
+                            <form id_page="<?php echo $articles_single_post['id']; ?>" id="form_comments" method="post" action="article.php?id=<?php echo $articles_single_post['id']; ?>#comments-add-from" class="form">
                                 <div class="form__group">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" class="checkedform__control nickname_name_my_input form__control" placeholder="Імя">
+                                            <input type="text" class="checkedform__control nickname_name_my_input form__control" name="name" placeholder="Імя">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="checkedform__control form__control" placeholder="Імя">
+                                            <input type="text" class="checkedform__control form__control" name="nickname" placeholder="Імя">
                                         </div>
                                     </div>
                                 </div>
@@ -95,19 +95,20 @@
                                     <textarea name="text" class="form__control text_my_input" placeholder="Опис..."></textarea>
                                 </div>
                                 <div class="form__group">
-                                    <input type="submit" class="form__control" value="Добавити коментар">
+                                    <input type="submit" class="form__control" name="text" value="Добавити коментар">
                                 </div>
+                                <div id="submit_div" class="form_controlmy" style="padding: 20px; background-color:black; color:aliceblue; cursor:pointer;">My button</div>
+                                <div id="position_button">button</div>
                             </form>
                         </div>
                     </div>
-            <?php } ?>
 
-
-
-            <?php include("./includes/sidebar.php") ?>
+                </section>
+                <?php } ?>
+                <?php include("./includes/sidebar.php") ?>
         </div>
     </div>
-</div>
+   </div>
 </div>
 
 
