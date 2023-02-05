@@ -6,7 +6,7 @@ if (isset($_POST["my_inp_obj"])) {
     $error = array();
 
     if($_POST["my_inp_obj"]["name"] == ""){
-        $error[] = 'Введіть іь\'я';
+        $error[] = 'Введіть ім\'я';
     };
     if($_POST["my_inp_obj"]["nickname"] == ""){
         $error[] = 'Введіть нік';
