@@ -98,7 +98,7 @@
                                     <input type="submit" class="form__control" name="text" value="Добавити коментар">
                                 </div>
                                 <div id="submit_div" class="form_controlmy" style="padding: 20px; background-color:black; color:aliceblue; cursor:pointer;">My button</div>
-                                <div id="position_button">button</div>
+                                <div id="position_button"></div>
                             </form>
                         </div>
                     </div>
