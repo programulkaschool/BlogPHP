@@ -7,7 +7,7 @@
                 </div>
                 <nav class="menu">
                     <ul>
-                        <li><a href="#">Головна</a></li>
+                        <li><a href="/">Головна</a></li>
                         <li><a href="#">Про мене</a></li>
                         <li><a href="#">Instagram</a></li>
                     </ul>

@@ -4,32 +4,35 @@ include("./includes/header.php");?>
         <div id="content">
             <div class="container">
                 <div class="row">
+                <?php $articles = mysqli_query($connection, "SELECT * FROM articles WHERE id=".(int)$_GET['id']) ;
+                    if (mysqli_num_rows($articles)<=0){?>
+                        
+                    
                     <section class="content__left col-xl-8">
                         <div class="block">
-                            <a>14</a>
-                            <h3>Розробка на Node.JS</h3>
+                            <h3>Пост не знайдено</h3>
+                            <div class="block_content">
+                                <div class="full_text">
+                                    Запитувана стаття не знайдена
+                                </div>
+                            </div>
+                        </div>
+                        </section>
+
+<?php } else{
+    $articles_art = mysqli_fetch_assoc($articles);
+    mysqli_query($connection, "UPDATE `articles` SET `views`=`views`+1 WHERE id=".(int)$_GET['id']) ;
+    ?>
+                    <section class="content__left col-xl-8">
+                        <div class="block">
+                            <a><?php echo $articles_art['views'] ?></a>
+                            <h3><?php echo $articles_art['title'] ?></h3>
                             <div class="block_content">
                                 <div class="articles articles_full new_post">
                                     <article class="article">
-                                        <img class="photo_content" src="/img/black-photo.jpg" alt="black_photo">
+                                        <img class="photo_content" src="/img/<?php echo $articles_art['img'] ?>" alt="black_photo">
                                         <div class="full-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
-                                            repellat? Excepturi
-                                            magnam iure autem perspiciatis esse. Facere molestiae quasi quos obcaecati
-                                            natus in
-                                            reiciendis itaque assumenda quidem rerum ullam corporis iusto, laboriosam
-                                            dolore sed quod
-                                            amet blanditiis, modi voluptatum sapiente quia. Facilis architecto quaerat
-                                            assumenda harum!
-                                            Iusto eligendi maiores, consequatur autem voluptas veniam reprehenderit iure
-                                            incidunt,
-                                            voluptate suscipit numquam beatae perferendis possimus hic dolore corrupti
-                                            ab, tempora error
-                                            in velit! Qui ipsa culpa ut consequatur hic, reiciendis quod rem ex quos
-                                            odit voluptas
-                                            provident earum, debitis repellendus voluptatum aliquam! Quaerat beatae
-                                            magni explicabo
-                                            incidunt nobis, doloribus enim ad architecto temporibus!
+                                        <?php echo $articles_art['text'] ?>
                                         </div>
                                     </article>
                                 </div>
@@ -41,8 +44,8 @@ include("./includes/header.php");?>
                             <a href="#">Добавити свій</a>
                             <h3>Коментарі</h3>
                             <div class="block_content">
-                                <div class="articles articles_vertical new_post">
-                                    <article class="article">
+                                <div class="articles articles_vertical new_post flex-col">
+                                    <article class="article marg">
                                         <div class="article__image"
                                             style="background-image: url('./img/black-photo.jpg');">
                                         </div>
@@ -61,7 +64,7 @@ include("./includes/header.php");?>
                                         </div>
                                     </article>
 
-                                    <article class="article">
+                                    <article class="article marg">
                                         <div class="article__image"
                                             style="background-image: url('./img/black-photo.jpg');">
                                         </div>
@@ -113,6 +116,7 @@ include("./includes/header.php");?>
                                 </div>
                             </div>
                     </section>
+                    <?php };?>
                     <?php include("./includes/sidebar.php");?>
 
                 </div>

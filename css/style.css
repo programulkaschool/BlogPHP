@@ -388,3 +388,13 @@ h6 {
         width: 100%;
     }
 }
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.marg{
+    margin-top: 25px;
+}
