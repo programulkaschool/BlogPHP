@@ -95,5 +95,4 @@ $(document).ready(function () {
 
     //TABS
 
-
 })

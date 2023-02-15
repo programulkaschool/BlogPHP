@@ -95,9 +95,9 @@
                                     <textarea name="text" class="form__control text_my_input" placeholder="Опис..."></textarea>
                                 </div>
                                 <div class="form__group">
-                                    <input type="submit" class="form__control" name="text" value="Добавити коментар">
+                                    <!-- <input type="submit" class="form__control" name="text" value="Добавити коментар"> -->
+                                    <input id="submit_div" class="form_controlmy" type="button" value="Добавити коментар"></input>
                                 </div>
-                                <div id="submit_div" class="form_controlmy" style="padding: 20px; background-color:black; color:aliceblue; cursor:pointer;">My button</div>
                                 <div id="position_button"></div>
                             </form>
                         </div>
