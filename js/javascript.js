@@ -44,7 +44,7 @@ $(document).ready(function () {
     //     }
     // });
 
-
+    
 
     var val_inp_com = "";
     var val_nam_com = "";
@@ -53,8 +53,8 @@ $(document).ready(function () {
 
 
 
-    jQuery("body").on("click", ".sumbit_div", function () {
-        jQuery("#form_comments input[type='text'], #form_comments textarea").each(function () {
+    jQuery("body").on("click", ".sumbit_div", function() {
+        jQuery("#form_comments input[type='text'], #form_comments textarea").each(function(){
             val_inp_com = jQuery(this).val();
             val_nam_com = jQuery(this).attr("name");
             my_inp_obj[val_nam_com] = val_inp_com;
@@ -66,11 +66,11 @@ $(document).ready(function () {
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: { my_inp_obj: my_inp_obj, page_id: page_id },
-            success: function (data, status, xhr) {
+            data: {my_inp_obj: my_inp_obj, page_id: page_id},
+            success: function(data, status, xhr){
                 jQuery('#position_button').html(data);
             },
-            error: function (jqXhr, textStatus, errorMessage) {
+            error: function(jqXhr, textStatus, errorMessage){
                 jQuery('#position_button').append('Error' + errorMessage);
             }
         });
@@ -80,20 +80,5 @@ $(document).ready(function () {
 
     // TABS 
 
-    const tabs = document.querySelectorAll('[data-tab-target]')
-    const tabContents = document.querySelectorAll('[data-tab-content]')
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = document.querySelector(tab.dataset.tabTarget)
-            tabContents.forEach(tabContent => {
-                tabContent.classList.remove('active')
-            })
-            tabs.forEach(tab => {
-                tab.classList.remove('active')
-            })
-            tab.classList.add('active')
-            target.classList.add('active')
-        })
-    })
+    
 });

@@ -35,7 +35,7 @@
                                         break;
                                     };
                                 }; ?>
-                                <small>Категорія: <a href="/article.php?categorie=<?php echo $cati["categorie_id"] ?>"><?php echo ($ct); ?></a></small>
+                                <small>Категорія: <a href="/categories.php?id=<?php echo $cati["categorie_id"] ?>"><?php echo ($ct); ?></a></small>
                             </div>
 
 
