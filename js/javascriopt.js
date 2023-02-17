@@ -66,6 +66,10 @@ $(document).ready(function () {
     //         jQuery(".categorie-all").append("<p>"+jQuery(this).text() +"</p>")
     //     });
     // });
+
+
+
+    //comments
     var val_inp_com = "";
     var name_inp_com = "";
     var my_inp_obj = {};
@@ -82,17 +86,35 @@ $(document).ready(function () {
             url: 'ajaxController.php',
             type: 'Post',
             data: { my_inp_obj: my_inp_obj, page_id: page_id },
-            success: function (data, status, xhr) { 
+            success: function (data, status, xhr) {
                 jQuery('#position_button').html(data);
             },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                jQuery('#position_button').append('Error'+errorMessage);
+            error: function (jqXhr, textStatus, errorMessage) {
+                jQuery('#position_button').append('Error' + errorMessage);
             }
         });
 
     });
 
+    //delete post
+    var delet = "";
+    jQuery("body").on("click", ".delete", function () {
+        var post_id = jQuery(this).attr("id_delete")
+        var post_del = confirm("Ви дійсно хочите видалити цей пост?")
+        if(post_del){
+            jQuery.ajax({
+                url: 'ajaxController.php',
+                type: 'Post',
+                data: { post_id:post_id },
+                success: function (data, status, xhr) {
+                    alert("Post delete");
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                }
+            });
+        };
+       
+    });
 
-    //TABS
 
 })

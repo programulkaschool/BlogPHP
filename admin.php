@@ -9,36 +9,6 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
         <div class="row">
             <section class="content_left col-md-12">
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">№</th>
-                            <th scope="col">Назва</th>
-                            <th scope="col">Категорія</th>
-                            <th scope="col">Дата</th>
-                            <th scope="col">ON/OF</th>
-                            <th scope="col">Видалити</th>
-                        </tr>
-                    </thead>
-                    <?php
-                    $articles = 0;
-                    while ($articles = mysqli_fetch_assoc($categories_select)) {
-                    ?>
-                        <tbody>
-                            <tr>
-                                <th scope="row"><?php echo $articles["id"] ?></th>
-                                <td><?php echo $articles["title"] ?></td>
-                                <td>Otto</td>
-                                <td><?php echo $articles["pubdate"] ?></td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                            </tr>
-
-                        </tbody>
-                    <?php }; ?>
-                </table>
-
-                
                 <div class="con">
                     <div class="tabs">
                         <nav class="tabs_items">
@@ -59,6 +29,50 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                         </div>
                     </div>
                 </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Назва</th>
+                            <th scope="col">Категорія</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">ON/OF</th>
+                            <th scope="col">Видалити</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $articles = 0;
+                    while ($articles = mysqli_fetch_assoc($categories_select)) {
+                    ?>
+                        <?php
+                        foreach ($categories as $cat) {
+                            $cat_title = false;
+                            if ($cat["id"] === $articles["categorie_id"]) {
+                                $cat_title = $cat["title"];
+                                break;
+                            };
+                        };
+                        ?>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><?php echo $articles["id"] ?></th>
+                                <td><?php echo $articles["title"] ?></td>
+                                <td><?php echo $cat_title ?></td>
+                                <td><?php echo $articles["pubdate"] ?></td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                    </div>
+                                </td>
+                                <td><button id_delete="<?php echo $articles["id"] ?>" type="button" class="btn btn-outline-danger delete">Delete</button></td>
+                            </tr>
+
+                        </tbody>
+                    <?php }; ?>
+                </table>
+
             </section>
 
         </div>
