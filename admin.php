@@ -19,7 +19,7 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
                             <th scope="col">Categorie</th>
                             <th scope="col">Date</th>
                             <th scope="col">ON/OF</th>
-                            <th scope="col">DELETE</th>
+                            <th scope="col" style="text-align: center">DELETE</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,20 +27,30 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
                         <?php
                         while ($cot = mysqli_fetch_assoc($warf)) {
-                            $cid = $cot["id"];
-
-                            if($cot === $cat["id"]){
-                                $cotcat = $cat["title"];
-                            };
-
-                        ?>
+                            $cid = $cot["articles_id"];
+                            foreach ($categories as $cat) {
+                                $ct = false;
+                                if ($cat["id"] == $cot["categorie_id"]) {
+                                    $ct = $cat['title'];
+                                    break;
+                                };
+                            }; ?>
                             <tr>
                                 <th scope="row"><?php echo ($cot["id"]) ?></th>
                                 <td><?php echo ($cot["title"]) ?></td>
-                                <td><?php echo ($cotcat) ?></td>
+                                <td><?php echo ($cat["title"]) ?></td>
                                 <td><?php echo ($cot["pubdate"]) ?></td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <td>
+
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                    </div>
+
+
+                                </td>
+                                <td style="text-align: center"><button id_delete="<?php echo ($cot["id"]) ?>" type="button" class="btn-close delbtn" aria-label="Close"></button></td>
                             </tr>
                         <?php }; ?>
 

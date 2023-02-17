@@ -44,7 +44,7 @@ $(document).ready(function () {
     //     }
     // });
 
-    
+    // ADD COMMENTS
 
     var val_inp_com = "";
     var val_nam_com = "";
@@ -78,7 +78,27 @@ $(document).ready(function () {
 
 
 
-    // TABS 
+    // DELETE POST
+    
+    jQuery("body").on("click", ".delbtn", function() {
+        console.log("true");
+        var cns = jQuery(this).attr("id_delete");
+        var post_del = confirm("Ви дійсно хочете видалити цей пост???");
+        
+        console.log(post_del);
+        if(post_del){
+            jQuery.ajax({
+                url: 'ajaxController.php',
+                type: 'Post',
+                data: {del_post: cns},
+                success: function(data, status, xhr){
+                    alert("Post deleted")
+                },
+                error: function(jqXhr, textStatus, errorMessage){
+                }
+            });
+        };
+    });
 
     
 });

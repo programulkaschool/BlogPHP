@@ -25,3 +25,7 @@ if(isset($_POST["my_inp_obj"])){
         echo '<span style="color: red; font-weight: bold;">' . $error[0] . '</span>';
     };
 };
+
+if(isset($_POST["del_post"])){
+    echo $_POST["del_post"];
+};
