@@ -4,6 +4,7 @@ require('includes/head.php');
 require('includes/header.php');
 
 $warf = mysqli_query($connection, "SELECT * FROM `articles`");
+
 ?>
 
 <div id="content">
@@ -14,11 +15,11 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">№</th>
+                            <th style="text-algin:center;" scope="col">№</th>
                             <th scope="col">Title</th>
                             <th scope="col">Categorie</th>
                             <th scope="col">Date</th>
-                            <th scope="col">ON/OF</th>
+                            <th scope="col">OFF/ON</th>
                             <th scope="col" style="text-align: center">DELETE</th>
                         </tr>
                     </thead>
@@ -36,17 +37,26 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
                                 };
                             }; ?>
                             <tr>
-                                <th scope="row"><?php echo ($cot["id"]) ?></th>
+                                <th scope="row" style="text-algin:center;"><?php echo ($cot["id"]) ?></th>
                                 <td><?php echo ($cot["title"]) ?></td>
                                 <td><?php echo ($cat["title"]) ?></td>
                                 <td><?php echo ($cot["pubdate"]) ?></td>
                                 <td>
 
 
+                                    <?php
+                                    $p = "";
+                                    if ($cot["post_look"] == 1) {
+                                        $p = "checked";
+                                    }
+                                    ?>
+
+
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        <input <?php echo $p ?> class="form-check-input chck" name id_on_off="<?php echo ($cot["id"]) ?>" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                                         <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                     </div>
+
 
 
                                 </td>
@@ -58,6 +68,25 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
                     </tbody>
                 </table>
+
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+                </div>
+
+                <?php
+                       foreach ($categories as $cat) {
+                        ?>
+                       <div class="input-group">
+                       <input type="text" class="form-control" value="<?php echo $cat["title"]?>" aria-label="Recipient's username with two button addons">
+                       <button class="btn btn-outline-secondary" updt="<?php echo $cat["id"]?>" type="button">Update</button>
+                       <button class="btn btn-outline-secondary" delbtn ="<?php echo $cat["id"]?>"  type="button">Delete</button>
+                   </div>
+                        <?php
+                    }; ?>
+
+                <?php  ?>
 
             </section>
         </div>

@@ -93,6 +93,7 @@ $(document).ready(function () {
                 data: {del_post: cns},
                 success: function(data, status, xhr){
                     alert("Post deleted")
+                    location.reload();
                 },
                 error: function(jqXhr, textStatus, errorMessage){
                 }
@@ -100,5 +101,22 @@ $(document).ready(function () {
         };
     });
 
+    jQuery("body").on("click", ".chck", function() {
+        var onoff = jQuery(this).attr("id_on_off");
+        var tf = jQuery(this).prop('checked');
+        console.log(tf);
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: {onoff: tf, idpost: onoff},
+            success: function(data, status, xhr){
+                console.log(data);
+            },
+            error: function(jqXhr, textStatus, errorMessage){
+            }
+        });
+
+    });
     
 });
