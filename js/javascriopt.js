@@ -101,19 +101,41 @@ $(document).ready(function () {
     jQuery("body").on("click", ".delete", function () {
         var post_id = jQuery(this).attr("id_delete")
         var post_del = confirm("Ви дійсно хочите видалити цей пост?")
-        if(post_del){
+        if (post_del) {
             jQuery.ajax({
                 url: 'ajaxController.php',
                 type: 'Post',
-                data: { post_id:post_id },
+                data: { post_id: post_id },
                 success: function (data, status, xhr) {
                     alert("Post delete");
+                    location.reload();
                 },
                 error: function (jqXhr, textStatus, errorMessage) {
                 }
             });
         };
-       
+
+    });
+
+    //ON/OF
+
+    jQuery("body").on("click", ".on_of", function () {
+        var i_on_of = jQuery(this).attr("id_on_of");
+        var chec = jQuery(this).prop('checked');
+        console.log(i_on_of);
+        console.log(chec);
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { i_on_of: i_on_of, chec: chec },
+            success: function (data, status, xhr) {
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
+
     });
 
 

@@ -29,5 +29,12 @@ if (isset($_POST["my_inp_obj"])) {
 
 //delete post
 if (isset($_POST["post_id"])) {
+    $delit = $_POST["post_id"];
+    mysqli_query($connection, "DELETE FROM `articles` WHERE `id` = $delit ");
+}
 
+// on_of
+
+if (isset($_POST["chec"]) && isset($_POST["i_on_of"])) {
+    mysqli_query($connection, "UPDATE `articles` SET `post_look`=" . $_POST["chec"] . " WHERE `id`= ".$_POST["i_on_of"] );
 }
