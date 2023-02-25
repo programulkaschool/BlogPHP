@@ -36,5 +36,23 @@ if (isset($_POST["post_id"])) {
 // on_of
 
 if (isset($_POST["chec"]) && isset($_POST["i_on_of"])) {
-    mysqli_query($connection, "UPDATE `articles` SET `post_look`=" . $_POST["chec"] . " WHERE `id`= ".$_POST["i_on_of"] );
+    mysqli_query($connection, "UPDATE `articles` SET `post_look`=" . $_POST["chec"] . " WHERE `id`= " . $_POST["i_on_of"]);
+}
+
+//ad categories
+
+if (isset($_POST['add_categorie'])) {
+    mysqli_query($connection, "INSERT INTO `articles_categories` (`title`) VALUES ('" . $_POST['add_categorie'] . "') ");
+};
+
+//delete categories
+
+if(isset($_POST['categories_id'])){
+    $delit_categories = $_POST["categories_id"];
+    mysqli_query($connection, "DELETE FROM `articles_categories` WHERE `id` =" . $delit_categories );
+}
+
+//update categories
+if (isset($_POST["previousElement"]) && isset($_POST["id_categories_update"])) {
+    mysqli_query($connection, "UPDATE `articles_categories` SET `title`='" . $_POST["previousElement"] . "' WHERE `id`= " . $_POST["id_categories_update"]);
 }

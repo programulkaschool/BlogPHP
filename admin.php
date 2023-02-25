@@ -72,17 +72,17 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                             </div>
                             <div id="tab_03" class="tabs__block">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+                                    <input type="text" class="form-control text_button" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-secondary ad_button" type="button" id="button-addon2" >Add</button>
                                 </div>
                                 <?php
                                 foreach ($categories as $cat) {
                                 ?>
 
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="<?php echo $cat["title"]; ?>" aria-label="Recipient's username with two button addons">
-                                        <button class="btn btn-outline-secondary" id_1="<?php echo $cat["id"] ?>" type="button">Update</button>
-                                        <button class="btn btn-outline-secondary" id_2="<?php echo $cat["id"] ?>" type="button">Delete</button>
+                                        <input type="text" class="form-control" value="<?php echo $cat["title"]; ?>" aria-label="Recipient's username with two button addons">
+                                        <button class="btn btn-outline-secondary update_categories" id_1="<?php echo $cat["id"] ?>" type="button">Update</button>
+                                        <button id_delete_categories="<?php echo $cat["id"] ?>" class="btn btn-outline-secondary delete_categories" type="button">Delete</button>
                                     </div>
 
                                 <?php

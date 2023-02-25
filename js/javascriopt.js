@@ -139,4 +139,62 @@ $(document).ready(function () {
     });
 
 
+    //ad categories
+
+    jQuery("body").on("click", ".ad_button", function () {
+        var add_categorie = jQuery(".text_button").val();
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { add_categorie: add_categorie },
+            success: function (data, status, xhr) {
+                location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
+
+
+    });
+
+
+    //delete categories
+
+    jQuery("body").on("click", ".delete_categories", function () {
+        var categories_id = jQuery(this).attr("id_delete_categories")
+        var categories_del = confirm("Ви дійсно хочите видалити цю категорію?")
+        if (categories_del) {
+            jQuery.ajax({
+                url: 'ajaxController.php',
+                type: 'Post',
+                data: { categories_id: categories_id },
+                success: function (data, status, xhr) {
+                    alert("categories delete");
+                    location.reload();
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                }
+            });
+        };
+
+    });
+
+    //update categories
+
+    jQuery("body").on("click", ".update_categories", function () {
+        var id_categories_update = jQuery(this).attr("id_1");
+        var previousElement = jQuery(this).prev('input').val();
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { previousElement: previousElement,  id_categories_update:id_categories_update},
+            success: function (data, status, xhr) {
+                location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
+    })
+
 })
