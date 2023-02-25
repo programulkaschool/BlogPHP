@@ -118,5 +118,63 @@ $(document).ready(function () {
         });
 
     });
+
+
+    jQuery("body").on("click", ".add_button", function() {
+        var addinp = jQuery(".add_input").val();
+        console.log(addinp);
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: {inp: addinp},
+            success: function(data, status, xhr){
+                console.log(data);
+            },
+            error: function(jqXhr, textStatus, errorMessage){
+            }
+        });
+
+
+    });
+
+    // update button
+
+    jQuery("body").on("click", ".uptbtn", function() {
+        var upt = jQuery(this).attr(".uptbtn");
+        var previousInputValue = jQuery(this).prev('input').val();
+        var uptid = jQuery(this).attr("updt");
+
+        console.log(previousInputValue);
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: {inpuptd: previousInputValue, catid: uptid},
+            success: function(data, status, xhr){
+            },
+            error: function(jqXhr, textStatus, errorMessage){
+            }
+        });
+
+
+    });
+
+    jQuery("body").on("click", ".delctbtn", function() {
+        var dlid = jQuery(this).attr("delbtn");
+
+        console.log(dlid);
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: {deleteidbtn: dlid},
+            success: function(data, status, xhr){
+            },
+            error: function(jqXhr, textStatus, errorMessage){
+            }
+        });
+
+
+    });
     
 });

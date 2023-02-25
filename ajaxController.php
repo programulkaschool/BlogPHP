@@ -39,3 +39,17 @@ if (isset($_POST["onoff"]) && isset($_POST["idpost"])) {
     mysqli_query($connection, "UPDATE `articles` SET `post_look`=" . $_POST["onoff"] . " WHERE `id`=" . $_POST["idpost"]);
    
 };
+
+if (isset($_POST["inp"])) {
+    mysqli_query($connection, "INSERT INTO `article_categories` (`title`) VALUES ('". $_POST["inp"] ."') ");
+    echo $_POST["inp"];
+};
+
+if (isset($_POST["inpuptd"]) && isset($_POST["catid"])) {
+    mysqli_query($connection, "UPDATE `article_categories` SET `title`='". $_POST["inpuptd"] ."' WHERE `id`='". $_POST["catid"] ."' ");
+};
+
+if (isset($_POST["deleteidbtn"])) {
+    //mysqli_query($connection, "DELETE FROM `article_categories` WHERE `id` = ". $_POST["deleteidbtn"]);
+    mysqli_query($connection, "DELETE FROM `article_categories` WHERE `id` = ".$_POST["deleteidbtn"]);
+};

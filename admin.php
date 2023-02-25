@@ -71,17 +71,17 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+                    <input type="text" class="form-control add_input" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary add_button" type="button" id="button-addon2">Add</button>
                 </div>
 
                 <?php
                        foreach ($categories as $cat) {
                         ?>
                        <div class="input-group">
-                       <input type="text" class="form-control" value="<?php echo $cat["title"]?>" aria-label="Recipient's username with two button addons">
-                       <button class="btn btn-outline-secondary" updt="<?php echo $cat["id"]?>" type="button">Update</button>
-                       <button class="btn btn-outline-secondary" delbtn ="<?php echo $cat["id"]?>"  type="button">Delete</button>
+                       <input type="text" class="form-control del_upt_btn" value="<?php echo $cat["title"]?>" aria-label="Recipient's username with two button addons">
+                       <button class="btn btn-outline-secondary uptbtn" updt="<?php echo $cat["id"]?>" type="button">Update</button>
+                       <button class="btn btn-outline-secondary delctbtn" delbtn ="<?php echo $cat["id"]?>"  type="button">Delete</button>
                    </div>
                         <?php
                     }; ?>
