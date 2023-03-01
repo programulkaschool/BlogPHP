@@ -53,8 +53,8 @@ $(document).ready(function () {
 
 
 
-    jQuery("body").on("click", ".sumbit_div", function() {
-        jQuery("#form_comments input[type='text'], #form_comments textarea").each(function(){
+    jQuery("body").on("click", ".sumbit_div", function () {
+        jQuery("#form_comments input[type='text'], #form_comments textarea").each(function () {
             val_inp_com = jQuery(this).val();
             val_nam_com = jQuery(this).attr("name");
             my_inp_obj[val_nam_com] = val_inp_com;
@@ -66,11 +66,11 @@ $(document).ready(function () {
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: {my_inp_obj: my_inp_obj, page_id: page_id},
-            success: function(data, status, xhr){
+            data: { my_inp_obj: my_inp_obj, page_id: page_id },
+            success: function (data, status, xhr) {
                 jQuery('#position_button').html(data);
             },
-            error: function(jqXhr, textStatus, errorMessage){
+            error: function (jqXhr, textStatus, errorMessage) {
                 jQuery('#position_button').append('Error' + errorMessage);
             }
         });
@@ -79,29 +79,29 @@ $(document).ready(function () {
 
 
     // DELETE POST
-    
-    jQuery("body").on("click", ".delbtn", function() {
+
+    jQuery("body").on("click", ".delbtn", function () {
         console.log("true");
         var cns = jQuery(this).attr("id_delete");
         var post_del = confirm("Ви дійсно хочете видалити цей пост???");
-        
+
         console.log(post_del);
-        if(post_del){
+        if (post_del) {
             jQuery.ajax({
                 url: 'ajaxController.php',
                 type: 'Post',
-                data: {del_post: cns},
-                success: function(data, status, xhr){
+                data: { del_post: cns },
+                success: function (data, status, xhr) {
                     alert("Post deleted")
                     location.reload();
                 },
-                error: function(jqXhr, textStatus, errorMessage){
+                error: function (jqXhr, textStatus, errorMessage) {
                 }
             });
         };
     });
 
-    jQuery("body").on("click", ".chck", function() {
+    jQuery("body").on("click", ".chck", function () {
         var onoff = jQuery(this).attr("id_on_off");
         var tf = jQuery(this).prop('checked');
         console.log(tf);
@@ -109,29 +109,29 @@ $(document).ready(function () {
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: {onoff: tf, idpost: onoff},
-            success: function(data, status, xhr){
+            data: { onoff: tf, idpost: onoff },
+            success: function (data, status, xhr) {
                 console.log(data);
             },
-            error: function(jqXhr, textStatus, errorMessage){
+            error: function (jqXhr, textStatus, errorMessage) {
             }
         });
 
     });
 
 
-    jQuery("body").on("click", ".add_button", function() {
+    jQuery("body").on("click", ".add_button", function () {
         var addinp = jQuery(".add_input").val();
         console.log(addinp);
 
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: {inp: addinp},
-            success: function(data, status, xhr){
+            data: { inp: addinp },
+            success: function (data, status, xhr) {
                 console.log(data);
             },
-            error: function(jqXhr, textStatus, errorMessage){
+            error: function (jqXhr, textStatus, errorMessage) {
             }
         });
 
@@ -140,7 +140,7 @@ $(document).ready(function () {
 
     // update button
 
-    jQuery("body").on("click", ".uptbtn", function() {
+    jQuery("body").on("click", ".uptbtn", function () {
         var upt = jQuery(this).attr(".uptbtn");
         var previousInputValue = jQuery(this).prev('input').val();
         var uptid = jQuery(this).attr("updt");
@@ -149,17 +149,17 @@ $(document).ready(function () {
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: {inpuptd: previousInputValue, catid: uptid},
-            success: function(data, status, xhr){
+            data: { inpuptd: previousInputValue, catid: uptid },
+            success: function (data, status, xhr) {
             },
-            error: function(jqXhr, textStatus, errorMessage){
+            error: function (jqXhr, textStatus, errorMessage) {
             }
         });
 
 
     });
 
-    jQuery("body").on("click", ".delctbtn", function() {
+    jQuery("body").on("click", ".delctbtn", function () {
         var dlid = jQuery(this).attr("delbtn");
 
         console.log(dlid);
@@ -167,14 +167,39 @@ $(document).ready(function () {
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: {deleteidbtn: dlid},
-            success: function(data, status, xhr){
+            data: { deleteidbtn: dlid },
+            success: function (data, status, xhr) {
             },
-            error: function(jqXhr, textStatus, errorMessage){
+            error: function (jqXhr, textStatus, errorMessage) {
             }
         });
 
 
     });
-    
+
+
+    jQuery("body").on("click", ".addpst", function () {
+        var usr = jQuery(".pstttl").val();
+        var addtext = jQuery(".txtadd").val();
+        var selectedVal = jQuery('.myselect').val();
+        var yn = jQuery(".ch").prop('checked');
+        var oneortwo;
+        yn ? oneortwo = 1 :  oneortwo = 0;
+       
+        console.log(usr + "     " + addtext + "     " + selectedVal + "     " + oneortwo);
+
+        
+
+        jQuery.ajax({
+             url: 'ajaxController.php',
+             type: 'Post',
+             data: {usr: usr, addtext: addtext, selectedVal: selectedVal, oneortwo: oneortwo},
+             success: function (data, status, xhr) {
+             },
+             error: function (jqXhr, textStatus, errorMessage) {
+             }
+         });
+
+    });
+
 });

@@ -76,17 +76,75 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
                 </div>
 
                 <?php
-                       foreach ($categories as $cat) {
-                        ?>
-                       <div class="input-group">
-                       <input type="text" class="form-control del_upt_btn" value="<?php echo $cat["title"]?>" aria-label="Recipient's username with two button addons">
-                       <button class="btn btn-outline-secondary uptbtn" updt="<?php echo $cat["id"]?>" type="button">Update</button>
-                       <button class="btn btn-outline-secondary delctbtn" delbtn ="<?php echo $cat["id"]?>"  type="button">Delete</button>
-                   </div>
-                        <?php
-                    }; ?>
+                foreach ($categories as $cat) {
+                ?>
+                    <div class="input-group">
+                        <input type="text" class="form-control del_upt_btn" value="<?php echo $cat["title"] ?>" aria-label="Recipient's username with two button addons">
+                        <button class="btn btn-outline-secondary uptbtn" updt="<?php echo $cat["id"] ?>" type="button">Update</button>
+                        <button class="btn btn-outline-secondary delctbtn" delbtn="<?php echo $cat["id"] ?>" type="button">Delete</button>
+                    </div>
+                <?php
+                }; ?>
 
                 <?php  ?>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="text-algin:center;" scope="col">№</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Text</th>
+                            <th scope="col">Category</th>
+                            <th scope="col" style="text-align: center;">OFF/ON</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr>
+                            <th scope="row" style="text-algin:center;">1</th>
+                            <td>
+                                <div class="input-group flex-nowrap">
+                                    <input type="text" class="form-control pstttl" placeholder="Post Title" aria-label="Post Title"  aria-describedby="addon-wrapping">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-floating">
+                                    <textarea class="form-control txtadd" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                    <label for="floatingTextarea">Comment</label>
+                                </div>
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm myselect" aria-label=".form-select-sm example">
+                                    <option selected>Select Categories</option>
+
+                                    <?php
+                                    foreach ($categories as $cat) {
+                                        
+                                    ?>
+                                    <option class="opt" value="<?php echo($cat["id"])?>"><?php echo $cat["title"]?></option>
+
+                                    <?php  }; ?>
+
+                                </select>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input ch" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                </div>
+                            </td>
+                            <td style="text-align: center;">
+                                <button type="button" class="btn btn-dark addpst">ADD POST</button>
+                            </td>
+
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
 
             </section>
         </div>

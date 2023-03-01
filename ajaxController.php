@@ -53,3 +53,7 @@ if (isset($_POST["deleteidbtn"])) {
     //mysqli_query($connection, "DELETE FROM `article_categories` WHERE `id` = ". $_POST["deleteidbtn"]);
     mysqli_query($connection, "DELETE FROM `article_categories` WHERE `id` = ".$_POST["deleteidbtn"]);
 };
+
+if (isset($_POST["usr"]) && isset($_POST["addtext"]) && isset($_POST["selectedVal"]) && isset($_POST["oneortwo"]) ) {
+    mysqli_query($connection, "INSERT INTO articles (title,text,categorie_id,post_look,pubdate) VALUES ('" . $_POST['add_post_title'] . "', '" . $_POST['add_post_text'] . "', '" . $_POST['chec_post_selected'] . "', '" . $_POST['chec_post'] . "',  NOW()  ) ");
+};
