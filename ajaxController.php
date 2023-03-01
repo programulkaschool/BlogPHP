@@ -56,3 +56,8 @@ if(isset($_POST['categories_id'])){
 if (isset($_POST["previousElement"]) && isset($_POST["id_categories_update"])) {
     mysqli_query($connection, "UPDATE `articles_categories` SET `title`='" . $_POST["previousElement"] . "' WHERE `id`= " . $_POST["id_categories_update"]);
 }
+
+//add post
+if (isset($_POST['add_post_title']) && isset($_POST['add_post_text']) && isset($_POST['chec_post']) && isset($_POST['chec_post_selected'])) {
+    mysqli_query($connection, "INSERT INTO `articles` (`title`,`text`,`categorie_id`,`post_look`,`pubdate`) VALUES ('" . $_POST['add_post_title'] . "', '" . $_POST['add_post_text'] . "', '" . $_POST['chec_post_selected'] . "', '" . $_POST['chec_post'] . "',  NOW()  ) ");
+};

@@ -188,7 +188,7 @@ $(document).ready(function () {
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: { previousElement: previousElement,  id_categories_update:id_categories_update},
+            data: { previousElement: previousElement, id_categories_update: id_categories_update },
             success: function (data, status, xhr) {
                 location.reload();
             },
@@ -197,4 +197,36 @@ $(document).ready(function () {
         });
     })
 
+
+    //add post
+    jQuery("body").on("click", ".add_title", function () {
+        var chec_post
+        var add_post_title = jQuery(".title_button_post").val();
+        var add_post_text = jQuery(".text_button_post").val();
+        if(jQuery(".on_of_post").prop('checked') == true){
+            chec_post=1
+        }else{
+            chec_post=0
+        }
+        var chec_post_selected = jQuery('.id_post_select').val();
+        console.log(add_post_title)
+        console.log(add_post_text)
+        console.log(chec_post)
+        console.log(chec_post_selected)
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { add_post_title: add_post_title, add_post_text: add_post_text, chec_post: chec_post, chec_post_selected: chec_post_selected },
+            success: function (data, status, xhr) {
+                location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
+
+
+    });
+
+
 })
+

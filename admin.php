@@ -68,12 +68,64 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                                 </table>
                             </div>
                             <div id="tab_02" class="tabs__block">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum numquam commodi laboriosam nostrum. Maxime ab dolores deleniti esse eius dolore. Omnis quasi eligendi sit fuga, neque rerum eaque ab.
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">№</th>
+                                            <th scope="col">TITLE</th>
+                                            <th scope="col">TEXT</th>
+                                            <th scope="col">CATEGORIES</th>
+                                            <th scope="col">ON/OF</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control title_button_post" placeholder="Title" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control text_button_post" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                                    <label for="floatingTextarea2">Comments</label>
+                                                </div>
+
+                                            </td>
+                                            <td><select class="form-select id_post_select" aria-label="Default select example">
+                                            <option selected>Select categories</option>
+                                                        <?php
+                                                        foreach ($categories as $cat) {
+                                                            $cat_title = false;
+                                                            if ($cat["id"] === $articles["categorie_id"]) {
+                                                                $cat_title = $cat["title"];
+                                                                break;
+                                                            };
+                                                        
+                                                        ?>
+
+                                                        <option value="<?php echo $cat["id"] ?>"><?php echo $cat["title"]; ?></option>
+                                                    <?php }; ?>
+                                                </select></td>
+                                            <td>
+                                                <div class="form-check form-switch ">
+                                                    <input class="form-check-input on_of_post" type="checkbox" role="switch" id="flexSwitchCheckDefault" <?php echo $o; ?>>
+                                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-success add_title">Add button</button></td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
                             </div>
                             <div id="tab_03" class="tabs__block">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control text_button" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary ad_button" type="button" id="button-addon2" >Add</button>
+                                    <button class="btn btn-outline-secondary ad_button" type="button" id="button-addon2">Add</button>
                                 </div>
                                 <?php
                                 foreach ($categories as $cat) {
