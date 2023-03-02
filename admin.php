@@ -20,6 +20,7 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
                             <th scope="col">Categorie</th>
                             <th scope="col">Date</th>
                             <th scope="col">OFF/ON</th>
+                            <th scope="col" style="text-align: center">EditMode</th>
                             <th scope="col" style="text-align: center">DELETE</th>
                         </tr>
                     </thead>
@@ -59,6 +60,9 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
 
 
+                                </td>
+                                <td style="text-align: center">
+                                    <a href="/edit.php?id=<?php echo $cot["id"]?>"><button class="btn btn-primary" type="submit">Edit</button></a>
                                 </td>
                                 <td style="text-align: center"><button id_delete="<?php echo ($cot["id"]) ?>" type="button" class="btn-close delbtn" aria-label="Close"></button></td>
                             </tr>
@@ -106,7 +110,7 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
                             <th scope="row" style="text-algin:center;">1</th>
                             <td>
                                 <div class="input-group flex-nowrap">
-                                    <input type="text" class="form-control pstttl" placeholder="Post Title" aria-label="Post Title"  aria-describedby="addon-wrapping">
+                                    <input type="text" class="form-control pstttl" placeholder="Post Title" aria-label="Post Title" aria-describedby="addon-wrapping">
                                 </div>
                             </td>
                             <td>
@@ -121,9 +125,9 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
                                     <?php
                                     foreach ($categories as $cat) {
-                                        
+
                                     ?>
-                                    <option class="opt" value="<?php echo($cat["id"])?>"><?php echo $cat["title"]?></option>
+                                        <option class="opt" value="<?php echo ($cat["id"]) ?>"><?php echo $cat["title"] ?></option>
 
                                     <?php  }; ?>
 
@@ -151,7 +155,7 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
     </div>
 </div>
 </div>
-<?php include('includes/footer.php'); ?>
+<?php include('includes/footer.php');?>
 </body>
 
 </html>

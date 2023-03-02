@@ -364,3 +364,19 @@ body {
         width: 100%;
     }
 }
+
+.wrapper{
+    min-height: calc(100vh - 134.5px);
+}
+
+.save_button .btn {
+    width: 100%;
+}
+
+.mr-bm {
+    margin-bottom: 25px;
+}
+
+.content_left .form-floating>.txt-pst-descr {
+    height: 27rem;
+}
