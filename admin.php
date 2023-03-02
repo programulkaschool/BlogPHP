@@ -26,6 +26,7 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                                             <th scope="col">Категорія</th>
                                             <th scope="col">Дата</th>
                                             <th scope="col">ON/OF</th>
+                                            <th scope="col">Редагувати</th>
                                             <th scope="col">Видалити</th>
                                         </tr>
                                     </thead>
@@ -60,6 +61,7 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                                                         <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                                     </div>
                                                 </td>
+                                                <td><a href="adit.php?id=<?php echo $articles["id"] ?>"><button type="button" class="btn btn-success">adit</button></a></td>
                                                 <td><button id_delete="<?php echo $articles["id"] ?>" type="button" class="btn btn-outline-danger delete">Delete</button></td>
                                             </tr>
 
