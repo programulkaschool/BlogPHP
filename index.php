@@ -21,8 +21,9 @@
                                 ?>
                                   <article class="article">
 
-                                      <div class="article_image" style="background-image: url('/img/<?php echo $post["img"]; ?>');">
-                                      </div>
+                                      <a href="http://www.example.com">
+                                          <div class="article_image" style="background-image: url('/img/<?php echo $post["img"]; ?>');"></div>
+                                      </a>
 
                                       <div class="article__info">
                                           <a href="/article.php?id=<?php echo $post["id"] ?>"><?php echo $post["title"]; ?></a>
@@ -42,6 +43,7 @@
 
 
                                           <div class="article__info__preview">
+                                            
                                               <?php echo substr($post["text"], 0, 150); ?>...
                                           </div>
                                       </div>
