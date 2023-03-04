@@ -60,7 +60,7 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                                                         <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                                     </div>
                                                 </td>
-                                                <td><a href="adit.php?id=<?php echo $articles["id"]; ?>"><button type="button" class="btn btn-success">adit</button></a></td>
+                                                <td><a href="edit.php?id=<?php echo $articles["id"]; ?>" target="_blank"><button type="button" class="btn btn-success">edit</button></a></td>
                                                 <td><button id_delete="<?php echo $articles["id"]; ?>" type="button" class="btn btn-outline-danger delete">Delete</button></td>
                                             </tr>
 

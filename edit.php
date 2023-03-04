@@ -39,23 +39,34 @@
 
                 <section class="content_right col-xl-4">
                     <button type="button" class="btn btn-outline-success wid_and_heig">Save</button>
-
                     <select class="form-select margin_select_categorie" aria-label="Default select example">
-                        <option selected>Select categories</option>
                         <?php
                         foreach ($categories as $cat) {
-                            $cat_title = false;
-                            if ($cat["id"] === $articles["categorie_id"]) {
-                                $cat_title = $cat["title"];
-                                break;
+                            $selected_categories = false;
+                            if ($cat["id"] === $articles_edit_post["categorie_id"]) {
+                                $selected_categories = "selected";
                             };
-
+                            
                         ?>
 
-                            <option value="<?php echo $cat["id"] ?>"><?php echo $cat["title"]; ?></option>
+                            <option value="<?php echo $cat["id"] ?>" <?php echo $selected_categories;?>><?php echo $cat["title"]; ?> </option>
                         <?php }; ?>
                     </select>
 
+                    <button type="button" class="btn btn-dark wid_and_heig">Edit photo</button>
+
+                    
+
+                    <div class="galer_photo_fon">
+                   <div class="exit"> <button type="button" class="btn-close" aria-label="Close"></button></div>
+
+                   <div class="galery_img">
+                   
+                   </div>
+
+                    </div>
+                    
+                         
                     <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="img-thumbnail" alt="...">
                 </section>
                 
