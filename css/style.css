@@ -380,3 +380,36 @@ body {
 .content_left .form-floating>.txt-pst-descr {
     height: 27rem;
 }
+
+#galere {
+    position: fixed;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 75%;
+    background-color:rgba(0, 0, 0, 0.397);
+    overflow: auto;
+  }
+
+.close-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #5a5a5a;
+    transition: all 0.3s ease-in-out;
+}
+
+.close-container:hover {
+    background-color: #797979;
+}
+
+.imgs {
+    padding: 30px;
+}
+
+.pht {
+    border: 1px solid #ffff;
+    margin: 10px;
+}

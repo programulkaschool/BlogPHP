@@ -45,7 +45,7 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
 
                     <div class="edit_text_area">
                         <div class="form-floating">
-                            <textarea class="form-control txt-pst-descr" placeholder="Leave a comment here" id="floatingTextarea"><?php echo $articles_single_post["text"];?></textarea>
+                            <textarea class="form-control txt-pst-descr" placeholder="Leave a comment here" id="floatingTextarea"><?php echo $articles_single_post["text"]; ?></textarea>
                             <label for="floatingTextarea">Text</label>
                         </div>
                     </div>
@@ -60,21 +60,48 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
 
                     <div>
                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option selected>Select Categories</option>
 
                             <?php
+
                             foreach ($categories as $cat) {
-
+                                $sf = false;
+                                if ($articles_single_post["categorie_id"] === $cat["id"]) {
+                                    $sf = "selected";
+                                };
                             ?>
-                                <option class="opt" value="<?php echo ($cat["id"]) ?>"><?php echo $cat["title"] ?></option>
+                                <option class="opt" <?php echo $sf; ?> value="<?php echo ($cat["id"]) ?>"><?php echo $cat["title"] ?></option>
 
-                            <?php  }; ?>
+                            <?php }; ?>
 
                         </select>
                     </div>
 
-                    <div class="pst-img">
-                        <img class="img-thumbnail" src="/img/<?php echo $articles_single_post["img"]?>" alt="da">
+                    <div class="save_button mr-bm">
+
+                        <button type="button" class="btn btn-dark pht-edit">Edit photo</button>
+
+                    </div>
+
+                    <div id="galere">
+                        <div class="close-container">
+                            <button type="button" class="btn-close" aria-label="Close"></button>
+                        </div>
+
+                        <div class="imgs">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                            <img class="pht" src="img/imag.jpeg" alt="">
+                        </div>
                     </div>
 
                 </section>

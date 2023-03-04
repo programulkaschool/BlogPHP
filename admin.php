@@ -62,7 +62,7 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
                                 </td>
                                 <td style="text-align: center">
-                                    <a href="/edit.php?id=<?php echo $cot["id"]?>"><button class="btn btn-primary" type="submit">Edit</button></a>
+                                    <a href="/edit.php?id=<?php echo $cot["id"]?>" target="_blank"><button class="btn btn-primary" type="submit">Edit</button></a>
                                 </td>
                                 <td style="text-align: center"><button id_delete="<?php echo ($cot["id"]) ?>" type="button" class="btn-close delbtn" aria-label="Close"></button></td>
                             </tr>
