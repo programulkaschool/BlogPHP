@@ -119,7 +119,7 @@ body {
     background-size: cover;
 }
 
-body a{
+body a {
     color: #000;
     text-decoration: none;
 }
@@ -176,7 +176,8 @@ h6 {
     font-size: 12px;
     font-weight: bold;
 }
-.header__top__logo h1{
+
+.header__top__logo h1 {
     color: #000;
 }
 
@@ -187,7 +188,7 @@ h6 {
 #footer {
     padding: 37px 0;
     border-top: #000 solid 1px;
-    
+
 }
 
 #footer .container,
@@ -302,9 +303,10 @@ h6 {
     margin-bottom: 30px;
 }
 
-.block>h3{
+.block>h3 {
     color: #000;
 }
+
 .block>a {
     font-size: 20px;
     color: #000;
@@ -407,7 +409,8 @@ h6 {
     font-size: 16px;
     outline: none;
 }
-.form_controlmy{
+
+.form_controlmy {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -522,25 +525,27 @@ h6 {
     font-size: 18px;
 }
 
-.wrapper{
-min-height: calc(100vh - 131px);
-max-width: auto;
+.wrapper {
+    min-height: calc(100vh - 131px);
+    max-width: auto;
 }
 
-.content_left .form-floating>.form-control:focus, .form-floating>.form-control:not(:placeholder-shown){
+.content_left .form-floating>.form-control:focus,
+.form-floating>.form-control:not(:placeholder-shown) {
     height: 490px;
 }
 
-.wid_and_heig{
+.wid_and_heig {
     width: 100%;
     margin-bottom: 16px;
 }
 
-.margin_select_categorie{
+.margin_select_categorie {
     margin-bottom: 16px;
 }
-.efect{
-   width: 100%;
+
+.efect {
+    width: 100%;
 }
 
 /* galeri photo */
@@ -554,18 +559,31 @@ max-width: auto;
     height: 80%;
     background-color: rgba(126, 122, 122, 0.568);
     z-index: 9999;
-  }
+    overflow-y: scroll;
+}
 
-  .exit{
+.exit {
     position: absolute;
     top: 10px;
     right: 10px;
     border: 1px solid #000;
     border-radius: 100px;
-  }
-  
-  .galery_img{
+}
+
+.ful_galery_img {
     padding: 33px;
     width: 100%;
     height: 100%;
-  }
+}
+
+.galeri_img {
+    max-width: 400px;
+    max-height: 400px;
+    margin: 31px;
+}
+
+.galeri_img:hover {
+    transform: scale(1.2);
+    border: 2px solid yellow;
+    box-shadow: 0 0 5px yellow;
+}
