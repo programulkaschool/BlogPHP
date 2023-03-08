@@ -203,10 +203,10 @@ $(document).ready(function () {
         var chec_post
         var add_post_title = jQuery(".title_button_post").val();
         var add_post_text = jQuery(".text_button_post").val();
-        if(jQuery(".on_of_post").prop('checked') == true){
-            chec_post=1
-        }else{
-            chec_post=0
+        if (jQuery(".on_of_post").prop('checked') == true) {
+            chec_post = 1
+        } else {
+            chec_post = 0
         }
         var chec_post_selected = jQuery('.id_post_select').val();
         console.log(add_post_title)
@@ -225,6 +225,22 @@ $(document).ready(function () {
         });
 
 
+    });
+
+    jQuery("body").on("click", ".wid_and_heig", function () {
+        jQuery('.galer_photo_fon').fadeIn();
+    });
+
+    jQuery("body").click(function (event) {
+        //console.log(event.target.className)
+        if (event.target.className != "btn btn-dark wid_and_heig" ) {
+            jQuery('.galer_photo_fon').fadeOut();
+        };
+    })
+
+    jQuery("body").on("click", ".galeri_img", function(){
+       var photo_src = jQuery(this).attr("src");
+       jQuery(".img-thumbnail").attr("src", photo_src);
     });
 
 

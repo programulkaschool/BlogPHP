@@ -6,6 +6,8 @@
     <div class="container">
         <div class="row">
 
+            <?php $articles_post = mysqli_query($connection, "SELECT * FROM `articles`"); ?>
+
             <?php $articles_id = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id`= " . (int)$_GET["id"]);
             if (mysqli_num_rows($articles_id) <= 0) {
             ?>
@@ -52,29 +54,24 @@
                             <option value="<?php echo $cat["id"] ?>" <?php echo $selected_categories; ?>><?php echo $cat["title"]; ?> </option>
                         <?php }; ?>
                     </select>
-             <button type="button" class="btn btn-dark wid_and_heig">Edit photo</button>
-                   
+                    <button type="button" class="btn btn-dark wid_and_heig">Edit photo</button>
 
 
 
-                    <div class="galer_photo_fon" >
-                        
-                        <div class="exit"> <button type="button" class="btn-close" aria-label="Close"></button></div>
+
+                    <div class="galer_photo_fon">
+
+                        <div class="exit" id="exit"> <button type="button" class="btn-close" aria-label="Close"></button></div>
 
                         <div class="ful_galery_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-                            <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="galeri_img">
-
+                        <?php 
+                            while($photo = mysqli_fetch_assoc($articles_post)){
+                            ?>
+                            <img src="/img/<?php echo $photo['img'] ?>" class="galeri_img" id="id_photo">
+                            <?php 
+                            }
+                            ?>
+                                
                         </div>
 
 
