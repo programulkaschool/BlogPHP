@@ -7,6 +7,8 @@ require('includes/header.php');
 
 $articles_edit_post = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id`=" . (int)$_GET['id']);
 
+$allpst = mysqli_query($connection, "SELECT * FROM `articles`");
+
 if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
 
     <section class="content_left col-xl-8">
@@ -24,7 +26,6 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
 
     $articles_single_post = mysqli_fetch_assoc($articles_edit_post);
 
-    var_dump($articles_single_post);
 ?>
 
     <div id="content">
@@ -78,8 +79,12 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
 
                     <div class="save_button mr-bm">
 
-                        <button type="button" class="btn btn-dark pht-edit">Edit photo</button>
+                        <button type="button" class="btn btn-dark pht-edit" id="pga">Edit photo</button>
 
+                    </div>
+
+                    <div class="myphtd">
+                        <img class="pht" src="img/<?php echo $articles_single_post["img"]?>" alt="">
                     </div>
 
                     <div id="galere">
@@ -88,19 +93,15 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
                         </div>
 
                         <div class="imgs">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
-                            <img class="pht" src="img/imag.jpeg" alt="">
+
+                            <?php
+                            while ($all_post_selected = mysqli_fetch_assoc($allpst)) {
+                            ?>
+
+                                <div class="responsive">
+                                    <img class="pht pht-hide" src="img/<?php echo $all_post_selected["img"] ?>" alt="">
+                                </div>
+                            <?php }; ?>
                         </div>
                     </div>
 

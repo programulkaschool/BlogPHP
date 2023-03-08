@@ -365,7 +365,7 @@ body {
     }
 }
 
-.wrapper{
+.wrapper {
     min-height: calc(100vh - 134.5px);
 }
 
@@ -382,6 +382,7 @@ body {
 }
 
 #galere {
+    display: none;
     position: fixed;
     z-index: 999;
     top: 50%;
@@ -389,9 +390,9 @@ body {
     transform: translate(-50%, -50%);
     width: 75%;
     height: 75%;
-    background-color:rgba(0, 0, 0, 0.397);
+    background-color: rgba(0, 0, 0, 0.397);
     overflow: auto;
-  }
+}
 
 .close-container {
     position: absolute;
@@ -412,4 +413,18 @@ body {
 .pht {
     border: 1px solid #ffff;
     margin: 10px;
+    width: 300px;
+    height: 200px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.responsive> .pht:hover {
+    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+
+.responsive {
+    width: 25%;
+    float: left;
+    margin-bottom: 10px;
 }

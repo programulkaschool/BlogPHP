@@ -184,22 +184,43 @@ $(document).ready(function () {
         var selectedVal = jQuery('.myselect').val();
         var yn = jQuery(".ch").prop('checked');
         var oneortwo;
-        yn ? oneortwo = 1 :  oneortwo = 0;
-       
+        yn ? oneortwo = 1 : oneortwo = 0;
+
         console.log(usr + "     " + addtext + "     " + selectedVal + "     " + oneortwo);
 
-        
+
 
         jQuery.ajax({
-             url: 'ajaxController.php',
-             type: 'Post',
-             data: {usr: usr, addtext: addtext, selectedVal: selectedVal, oneortwo: oneortwo},
-             success: function (data, status, xhr) {
-             },
-             error: function (jqXhr, textStatus, errorMessage) {
-             }
-         });
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { usr: usr, addtext: addtext, selectedVal: selectedVal, oneortwo: oneortwo },
+            success: function (data, status, xhr) {
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
 
+    });
+
+    // jQuery("body").on("click", ".btn-close") function () {
+    //     var close_fnc = jQuery(".btn-close").css("display", "none");
+
+    // };
+
+    jQuery("body").on("click", ".pht-edit", function () {
+        jQuery("#galere").fadeIn();
+    });
+
+    jQuery("body").click(function (event) {
+        if (event.target.id !== 'galere' && event.target.id !== 'pga') {
+            jQuery("#galere").fadeOut();
+        }
+    });
+    jQuery("body").on("click", ".responsive .pht", function () {
+        console.log("cliiiick!!!!");
+        var fa= jQuery(this).attr("src");
+        jQuery(".myphtd .pht").attr("src", fa);
+        console.log(fa);
     });
 
 });
