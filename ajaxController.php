@@ -57,3 +57,23 @@ if (isset($_POST["deleteidbtn"])) {
 if (isset($_POST["usr"]) && isset($_POST["addtext"]) && isset($_POST["selectedVal"]) && isset($_POST["oneortwo"]) ) {
     mysqli_query($connection, "INSERT INTO articles (title,text,categorie_id,post_look,pubdate) VALUES ('" . $_POST['add_post_title'] . "', '" . $_POST['add_post_text'] . "', '" . $_POST['chec_post_selected'] . "', '" . $_POST['chec_post'] . "',  NOW()  ) ");
 };
+
+if ($_FILES['customFile']['error'] === UPLOAD_ERR_OK) {
+    $filename = $_FILES['customFile']['name'];
+    $file_tmp = $_FILES['customFile']['tmp_name'];
+    $max_size = 2 * 1024 * 1024;
+    if($_FILES['customFile']['size'] > $max_size){
+        echo 'ERROR: File size is too large';
+        exit;
+    };
+    $upload_dir = 'img/';
+    $upload_file = $upload_dir . $filename;
+    if(move_uploaded_file($file_tmp, $upload_file)){
+        chmod($upload_file, 0666);
+        echo $filename;
+    }else{
+        echo 'Error: Unable to move uploaded file.';
+    };
+}else{
+    echo 'Error: Unable to move uploaded file.';
+}

@@ -218,9 +218,54 @@ $(document).ready(function () {
     });
     jQuery("body").on("click", ".responsive .pht", function () {
         console.log("cliiiick!!!!");
-        var fa= jQuery(this).attr("src");
+        var fa = jQuery(this).attr("src");
         jQuery(".myphtd .pht").attr("src", fa);
         console.log(fa);
     });
+
+    // jQuery(document).ready(function () {
+    //     jQuery('#formFileMultiple').on('change', function (e) {
+    //         jQuery('#selected-images').html('');
+
+    //         var files = e.target.files;
+
+    //         for (var i = 0; i < files.length; i++) {
+    //             if (files[i].type.match('image.*')) {
+    //                 var reader = new FileReader();
+
+    //                 reader.onload = function (e) {
+    //                     var img = $('<img>').attr('src', e.target.result);
+    //                     $('#selected-images').append(img);
+    //                 }
+
+    //                 reader.readAsDataURL(files[i]);
+    //             }
+    //         }
+    //     });
+    // });
+
+    jQuery(".save_buttonn1").click(function () {
+        var formData = new FormData();
+        var title = jQuery('.title_text').val();
+        var text_of_post = jQuery('.pst_text').val();
+        var selected_categorie = jQuery('.cat_slct').val();
+        console.log(text_of_post);
+        console.log(title);
+        console.log(selected_categorie);
+
+        formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data, status, xhr) {
+               // console.log(data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
+    })
 
 });

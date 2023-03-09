@@ -41,12 +41,12 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
 
 
                     <div class="input-group flex-nowrap mr-bm">
-                        <input type="text" class="form-control" value="<?php echo $articles_single_post["title"]; ?>" aria-label="Title" aria-describedby="addon-wrapping">
+                        <input type="text" class="form-control title_text" value="<?php echo $articles_single_post["title"]; ?>" aria-label="Title" aria-describedby="addon-wrapping">
                     </div>
 
                     <div class="edit_text_area">
                         <div class="form-floating">
-                            <textarea class="form-control txt-pst-descr" placeholder="Leave a comment here" id="floatingTextarea"><?php echo $articles_single_post["text"]; ?></textarea>
+                            <textarea class="form-control txt-pst-descr pst_text" placeholder="Leave a comment here" id="floatingTextarea"><?php echo $articles_single_post["text"]; ?></textarea>
                             <label for="floatingTextarea">Text</label>
                         </div>
                     </div>
@@ -55,12 +55,12 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
                 <section class="content_right col-xl-4">
 
                     <div class="save_button mr-bm">
-                        <button type="button" class="btn btn-outline-secondary">Save</button>
+                        <button id="save_button" type="button" class="btn btn-outline-secondary save_buttonn1">Save</button>
                     </div>
 
 
                     <div>
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <select class="form-select form-select-lg mb-3 cat_slct" aria-label=".form-select-lg example">
 
                             <?php
 
@@ -83,8 +83,12 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
 
                     </div>
 
-                    <div class="myphtd">
-                        <img class="pht" src="img/<?php echo $articles_single_post["img"]?>" alt="">
+                    <div class="mb-3">
+                        <input class="form-control upload_photo" type="file" id="customFile" name="customFile">
+                    </div>
+
+                    <div id="selected-images">
+                        <img class="pht upload_photo_img" src="img/<?php echo $articles_single_post["img"] ?>" alt="">
                     </div>
 
                     <div id="galere">
