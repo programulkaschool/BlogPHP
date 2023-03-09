@@ -30,17 +30,17 @@
                 <section class="content_left col-xl-8">
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control" value="<?php echo $articles_edit_post['title'] ?>" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control change_post_title" value="<?php echo $articles_edit_post['title'] ?>" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="form-floating">
-                        <textarea class="form-control widt_and_heigh" placeholder="Leave a comment here" id="floatingTextarea2"><?php echo $articles_edit_post['text'] ?></textarea>
+                        <textarea class="form-control widt_and_heigh change_post_text" placeholder="Leave a comment here" id="floatingTextarea2"><?php echo $articles_edit_post['text'] ?></textarea>
                         <label for="floatingTextarea2">Edit text</label>
                     </div>
                 </section>
 
                 <section class="content_right col-xl-4">
-                    <button type="button" class="btn btn-outline-success wid_and_heig">Save</button>
+                    <button type="button" class="btn btn-outline-success wid_and_heig btn-edit-save">Save</button>
                     <select class="form-select margin_select_categorie" aria-label="Default select example">
                         <?php
                         foreach ($categories as $cat) {
@@ -51,10 +51,10 @@
 
                         ?>
 
-                            <option value="<?php echo $cat["id"] ?>" <?php echo $selected_categories; ?>><?php echo $cat["title"]; ?> </option>
+                            <option value="<?php echo $cat["id"] ?>" <?php echo $selected_categories; ?> class="change_post_categories"><?php echo $cat["title"]; ?> </option>
                         <?php }; ?>
                     </select>
-                    <button type="button" class="btn btn-dark wid_and_heig">Edit photo</button>
+                    <button type="button" class="btn btn-dark wid_and_heigе">Edit photo</button>
 
 
 
@@ -64,21 +64,25 @@
                         <div class="exit" id="exit"> <button type="button" class="btn-close" aria-label="Close"></button></div>
 
                         <div class="ful_galery_img">
-                        <?php 
-                            while($photo = mysqli_fetch_assoc($articles_post)){
+                            <?php
+                            while ($photo = mysqli_fetch_assoc($articles_post)) {
                             ?>
-                            <img src="/img/<?php echo $photo['img'] ?>" class="galeri_img" id="id_photo">
-                            <?php 
+                                <img src="/img/<?php echo $photo['img'] ?>" class="galeri_img" id="id_photo">
+                            <?php
                             }
                             ?>
-                                
-                        </div>
 
+                        </div>
 
                     </div>
 
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label photo_input">Add photo</label>
+                        <input class="form-control custom_file_post_photo" type="file" id="customFile" name="customFile">
+                    </div>
 
                     <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="img-thumbnail" alt="...">
+
                 </section>
 
             <?php }; ?>

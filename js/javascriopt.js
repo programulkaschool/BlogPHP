@@ -227,23 +227,60 @@ $(document).ready(function () {
 
     });
 
-    jQuery("body").on("click", ".wid_and_heig", function () {
+    jQuery("body").on("click", ".wid_and_heigе", function () {
         jQuery('.galer_photo_fon').fadeIn();
     });
 
     jQuery("body").click(function (event) {
         //console.log(event.target.className)
-        if (event.target.className != "btn btn-dark wid_and_heig" ) {
+        if (event.target.className != "btn btn-dark wid_and_heigе") {
             jQuery('.galer_photo_fon').fadeOut();
         };
     })
 
-    jQuery("body").on("click", ".galeri_img", function(){
-       var photo_src = jQuery(this).attr("src");
-       jQuery(".img-thumbnail").attr("src", photo_src);
+    jQuery("body").on("click", ".galeri_img", function () {
+        var photo_src = jQuery(this).attr("src");
+        jQuery(".img-thumbnail").attr("src", photo_src);
     });
 
 
+
+
+    jQuery(".custom_file_post_photo").change(function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            jQuery(".img-thumbnail").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(file);
+    });
+
+
+
+    // jQuery(".btn-edit-save").click(function(){
+    //     var formData = new FormData();
+    //     formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
+    //     jQuery.ajax({
+    //         url: 'ajaxController.php',
+    //         type: 'Post',
+    //         data: formData,
+    //         processData: false,
+    //         contentType: false,
+    //         success: function (data, status, xhr) {
+    //             console.log(data);
+    //         },
+    //         error: function (jqXhr, textStatus, errorMessage) {
+    //         }
+    //     });
+    // })
+
+
+    jQuery("body").on("click", ".btn-edit-save", function () {
+        var change_post_title = jQuery(".change_post_title").val();
+        var change_post_text = jQuery(".change_post_text").val();
+        var change_post_categories = jQuery(".margin_select_categorie option:selected").val();
+        
+    });
 })
 
 

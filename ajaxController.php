@@ -47,9 +47,9 @@ if (isset($_POST['add_categorie'])) {
 
 //delete categories
 
-if(isset($_POST['categories_id'])){
+if (isset($_POST['categories_id'])) {
     $delit_categories = $_POST["categories_id"];
-    mysqli_query($connection, "DELETE FROM `articles_categories` WHERE `id` =" . $delit_categories );
+    mysqli_query($connection, "DELETE FROM `articles_categories` WHERE `id` =" . $delit_categories);
 }
 
 //update categories
@@ -61,3 +61,23 @@ if (isset($_POST["previousElement"]) && isset($_POST["id_categories_update"])) {
 if (isset($_POST['add_post_title']) && isset($_POST['add_post_text']) && isset($_POST['chec_post']) && isset($_POST['chec_post_selected'])) {
     mysqli_query($connection, "INSERT INTO `articles` (`title`,`text`,`categorie_id`,`post_look`,`pubdate`) VALUES ('" . $_POST['add_post_title'] . "', '" . $_POST['add_post_text'] . "', '" . $_POST['chec_post_selected'] . "', '" . $_POST['chec_post'] . "',  NOW()  ) ");
 };
+
+// if ($_FILES['customFile']['error'] === UPLOAD_ERR_OK) {
+//     $filename = $_FILES['customFile']['name'];
+//     $fil_tmp = $_FILES['customFile']['tmp_name'];
+//     $max_size = 2 * 1024 * 1024;
+//     if ($_FILES['customFile']['size'] > $max_size) {
+//         echo 'Error: File size is too large';
+//         exit;
+//     };
+//     $upload_dir = 'img/';
+//     $upload_file = $upload_dir . $filename;
+//     if (move_uploaded_file($fil_tmp, $upload_file)) {
+//         chmod($upload_file, 0666);
+//         echo $filename;
+//     }else{
+//         echo 'Error: Unable to move uploaded file.';
+//     };
+// }else{
+//     echo 'Error: File upload failed';
+// };
