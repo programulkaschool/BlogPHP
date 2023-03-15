@@ -40,7 +40,7 @@
                 </section>
 
                 <section class="content_right col-xl-4">
-                    <button type="button" class="btn btn-outline-success wid_and_heig btn-edit-save">Save</button>
+                    <button type="button" class="btn btn-outline-success wid_and_heig btn-edit-save" save_id_post="<?php echo $articles_edit_post["id"] ?>">Save</button>
                     <select class="form-select margin_select_categorie" aria-label="Default select example">
                         <?php
                         foreach ($categories as $cat) {
@@ -80,6 +80,7 @@
                         <label for="formFile" class="form-label photo_input">Add photo</label>
                         <input class="form-control custom_file_post_photo" type="file" id="customFile" name="customFile">
                     </div>
+                    <button type="button" class="btn btn-secondary upload_photo_wid_and_heigе upload_photo">Secondary</button>
 
                     <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="img-thumbnail" alt="...">
 

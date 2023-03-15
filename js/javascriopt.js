@@ -244,8 +244,6 @@ $(document).ready(function () {
     });
 
 
-
-
     jQuery(".custom_file_post_photo").change(function () {
         var file = this.files[0];
         var reader = new FileReader();
@@ -255,9 +253,7 @@ $(document).ready(function () {
         reader.readAsDataURL(file);
     });
 
-
-
-    // jQuery(".btn-edit-save").click(function(){
+    // jQuery(".btn-edit-save").click(function () {
     //     var formData = new FormData();
     //     formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
     //     jQuery.ajax({
@@ -274,12 +270,32 @@ $(document).ready(function () {
     //     });
     // })
 
+    jQuery(".upload_photo").click(function () {
+        var id_post_update = jQuery(".btn-edit-save").attr("save_id_post");
+        var formData = new FormData();
+        formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
+        formData.append('id_post_update', id_post_update);
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data, status, xhr) {
+                console.log(data);
+                location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
+    })
 
+ 
     jQuery("body").on("click", ".btn-edit-save", function () {
         var change_post_title = jQuery(".change_post_title").val();
         var change_post_text = jQuery(".change_post_text").val();
         var change_post_categories = jQuery(".margin_select_categorie option:selected").val();
-        
+
     });
 })
 

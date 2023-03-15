@@ -592,3 +592,13 @@ h6 {
     border: 2px solid yellow;
     box-shadow: 0 0 5px yellow;
 }
+
+.uploud_photo_wid_and_heigе{
+     width: 100%;
+    margin-bottom: 16px;
+}
+.img-thumbnail{
+    width: 400px;
+
+    margin-top: 20px;
+}
