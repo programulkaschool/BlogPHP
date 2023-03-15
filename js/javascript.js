@@ -1,5 +1,7 @@
 //const jquery = require("./jquery");
 
+//const jquery = require("./jquery");
+
 
 $(document).ready(function () {
     console.log("ready!");
@@ -219,41 +221,30 @@ $(document).ready(function () {
     jQuery("body").on("click", ".responsive .pht", function () {
         console.log("cliiiick!!!!");
         var fa = jQuery(this).attr("src");
-        jQuery(".myphtd .pht").attr("src", fa);
+        jQuery(".upload_photo_img").attr("src", fa);
         console.log(fa);
     });
 
-    // jQuery(document).ready(function () {
-    //     jQuery('#formFileMultiple').on('change', function (e) {
-    //         jQuery('#selected-images').html('');
 
-    //         var files = e.target.files;
+    // Показуємо попередній перегляд зображення після вибору файлу
+    $("#customFile").change(function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.upload_photo_img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file);
+    });
 
-    //         for (var i = 0; i < files.length; i++) {
-    //             if (files[i].type.match('image.*')) {
-    //                 var reader = new FileReader();
 
-    //                 reader.onload = function (e) {
-    //                     var img = $('<img>').attr('src', e.target.result);
-    //                     $('#selected-images').append(img);
-    //                 }
-
-    //                 reader.readAsDataURL(files[i]);
-    //             }
-    //         }
-    //     });
-    // });
-
-    jQuery(".save_buttonn1").click(function () {
+    jQuery(".save_change_btn").click(function () {
         var formData = new FormData();
-        var title = jQuery('.title_text').val();
-        var text_of_post = jQuery('.pst_text').val();
-        var selected_categorie = jQuery('.cat_slct').val();
-        console.log(text_of_post);
-        console.log(title);
-        console.log(selected_categorie);
+
+        var pstid = jQuery(this).attr("edit_post_id");
+        console.log(pstid);
 
         formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
+        formData.append('edit_post_id', pstid);
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
@@ -261,11 +252,22 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (data, status, xhr) {
-               // console.log(data);
+                console.log(data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
             }
         });
     })
+
+    jQuery("body").on("click", ".save_buttonn1", function () {
+        var post_title_val = jQuery(".title_text").val();
+        var post_text_val = jQuery(".pst_text").val();
+        var selected_post_categorie = jQuery(".cat_slct option:selected").val()
+
+        console.log(post_title_val);
+        console.log(post_text_val);
+        console.log(selected_post_categorie);
+    });
+
 
 });

@@ -428,3 +428,7 @@ body {
     float: left;
     margin-bottom: 10px;
 }
+
+.btn_gray {
+    background-color: gray;
+}

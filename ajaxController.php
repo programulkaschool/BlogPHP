@@ -71,9 +71,14 @@ if ($_FILES['customFile']['error'] === UPLOAD_ERR_OK) {
     if(move_uploaded_file($file_tmp, $upload_file)){
         chmod($upload_file, 0666);
         echo $filename;
+        mysqli_query($connection, "UPDATE `articles` SET `img`='". $filename ."' WHERE `id`='". $_POST["edit_post_id"] ."' ");
     }else{
         echo 'Error: Unable to move uploaded file.';
     };
 }else{
     echo 'Error: Unable to move uploaded file.';
 }
+
+if (isset($_POST["usr"]) && isset($_POST["addtext"]) && isset($_POST["selectedVal"]) && isset($_POST["oneortwo"]) ) {
+    mysqli_query($connection, "INSERT INTO articles (title,text,categorie_id,post_look,pubdate) VALUES ('" . $_POST['add_post_title'] . "', '" . $_POST['add_post_text'] . "', '" . $_POST['chec_post_selected'] . "', '" . $_POST['chec_post'] . "',  NOW()  ) ");
+};
