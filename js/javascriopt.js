@@ -237,9 +237,9 @@ $(document).ready(function () {
             jQuery('.galer_photo_fon').fadeOut();
         };
     })
-
+    var photo_src;
     jQuery("body").on("click", ".galeri_img", function () {
-        var photo_src = jQuery(this).attr("src");
+        photo_src = jQuery(this).attr("src");
         jQuery(".img-thumbnail").attr("src", photo_src);
     });
 
@@ -270,11 +270,31 @@ $(document).ready(function () {
     //     });
     // })
 
-    jQuery(".upload_photo").click(function () {
-        var id_post_update = jQuery(".btn-edit-save").attr("save_id_post");
+    jQuery(".btn-edit-save").click(function () {
+        var change_id_post_update = jQuery(".btn-edit-save").attr("save_id_post");
+        var change_post_title = jQuery(".change_post_title").val();
+        var change_post_text = jQuery(".change_post_text").val();
+        var change_post_categories = jQuery(".margin_select_categorie option:selected").val();
+        
+        var name_src_photo;
+        if (photo_src !== undefined) {
+            name_src_photo = photo_src.split("/").at(-1);
+        } else {
+            name_src_photo = false;
+        }
+        console.log(name_src_photo)
+        
+        var all_post_edit = {
+            change_id_post_update: change_id_post_update,
+            change_post_title: change_post_title,
+            change_post_text: change_post_text,
+            change_post_categories: change_post_categories,
+            name_src_photo: name_src_photo,
+        }
+
         var formData = new FormData();
-        formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
-        formData.append('id_post_update', id_post_update);
+        //formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
+        formData.append('all_post_edit', all_post_edit);
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
@@ -282,21 +302,43 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (data, status, xhr) {
-                console.log(data);
-                location.reload();
+                // location.reload();
             },
             error: function (jqXhr, textStatus, errorMessage) {
             }
         });
     })
 
- 
-    jQuery("body").on("click", ".btn-edit-save", function () {
-        var change_post_title = jQuery(".change_post_title").val();
-        var change_post_text = jQuery(".change_post_text").val();
-        var change_post_categories = jQuery(".margin_select_categorie option:selected").val();
 
-    });
+    // jQuery("body").on("click", ".btn-edit-save", function () {
+    //     var change_id_post_update = jQuery(".btn-edit-save").attr("save_id_post");
+    //     var change_post_title = jQuery(".change_post_title").val();
+    //     var change_post_text = jQuery(".change_post_text").val();
+    //     var change_post_categories = jQuery(".margin_select_categorie option:selected").val();
+    //     var name_src_photo;
+    //     if (name_src_photo != "undefined") {
+    //         name_src_photo = photo_src.split("/").at(-1);
+    //     }
+    //     console.log(name_src_photo)
+    //     all_post_edit = {
+    //         change_id_post_update: change_id_post_update,
+    //         change_post_title: change_post_title,
+    //         change_post_text: change_post_text,
+    //         change_post_categories: change_post_categories,
+    //     }
+
+    //     jQuery.ajax({
+    //         url: 'ajaxController.php',
+    //         type: 'Post',
+    //         data: { all_post_edit: all_post_edit, name_src_photo: name_src_photo },
+    //         success: function (data, status, xhr) {
+    //             //location.reload();
+    //             console.log(data);
+    //         },
+    //         error: function (jqXhr, textStatus, errorMessage) {
+    //         }
+    //     });
+    // });
 })
 
 
