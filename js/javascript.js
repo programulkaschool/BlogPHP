@@ -218,11 +218,13 @@ $(document).ready(function () {
             jQuery("#galere").fadeOut();
         }
     });
+
+    var fa;
+
     jQuery("body").on("click", ".responsive .pht", function () {
         console.log("cliiiick!!!!");
-        var fa = jQuery(this).attr("src");
+        fa = jQuery(this).attr("src");
         jQuery(".upload_photo_img").attr("src", fa);
-        console.log(fa);
     });
 
 
@@ -235,7 +237,6 @@ $(document).ready(function () {
         }
         reader.readAsDataURL(file);
     });
-
 
     jQuery(".save_change_btn").click(function () {
         var formData = new FormData();
@@ -263,10 +264,34 @@ $(document).ready(function () {
         var post_title_val = jQuery(".title_text").val();
         var post_text_val = jQuery(".pst_text").val();
         var selected_post_categorie = jQuery(".cat_slct option:selected").val()
+        var post_id = jQuery(".save_change_btn").attr("edit_post_id");
+
 
         console.log(post_title_val);
         console.log(post_text_val);
         console.log(selected_post_categorie);
+        console.log(post_id);
+
+        var photo_name;
+
+        if (fa !== undefined) {
+            photo_name = fa.split("/").pop();
+        } else{
+            photo_name = false;
+        }
+
+        console.log(photo_name);
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { photo_name: photo_name, post_title_val: post_title_val, post_text_val: post_text_val, selected_post_categorie: selected_post_categorie, post_id:post_id },
+            success: function (data, status, xhr) {
+                console.log(data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+            }
+        });
     });
 
 
