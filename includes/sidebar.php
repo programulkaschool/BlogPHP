@@ -49,114 +49,38 @@
 
         <div class="block_content">
             <div class="articles articles_vertical new_post">
-                <article class="article">
-                    <div class="article__image" style="background-image: url('./img/black-photo.jpg');">
-                    </div>
-                    <div class="article__info">
-                        <a href="#">Розробка Node.js</a>
-                        <div class="article__info__meta">
-                            <small>Категорія: <a href="#">Програмування</a></small>
-                        </div>
-
-                        <div class="article__info__preview">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                            assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                            similique
-                            ullam?
-                        </div>
-                    </div>
-
-                </article>
+            <?php $comments_ar = mysqli_query($connection, "SELECT * FROM `comments` ORDER BY `id` DESC LIMIT 5"); ?>
+         <?php while ( $comments = mysqli_fetch_assoc($comments_ar)) { 
+                //var_dump($comments)?>
 
                 <article class="article">
                     <div class="article__image" style="background-image: url('./img/black-photo.jpg');">
                     </div>
                     <div class="article__info">
-                        <a href="#">Розробка Node.js</a>
+                    <a href="#"> </a>
+
+                        <a href="#"><?php echo $comments["name"]; ?></a>
                         <div class="article__info__meta">
-                            <small>Категорія: <a href="#">Програмування</a></small>
+
+                        <?php foreach ($articles_all as $art_val) {
+                                    $post_title = false;
+                                    if ($art_val['id'] == $comments['articles_id']) {
+                                        $post_title = $art_val['title'];
+                                        break;
+                                    }
+                                }; ?>
+                            <small>Назва поста: <a href="#"><?php echo $post_title; ?></a></small>
                         </div>
 
                         <div class="article__info__preview">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                            assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                            similique
-                            ullam?
+                        <?php  echo substr($comments["text"], 0, 100) . "..."; ?>
+
                         </div>
                     </div>
+
                 </article>
+                <?php } ?>
 
-                <article class="article">
-                    <div class="article__image" style="background-image: url('./img/black-photo.jpg');">
-                    </div>
-                    <div class="article__info">
-                        <a href="#">Розробка Node.js</a>
-                        <div class="article__info__meta">
-                            <small>Категорія: <a href="#">Програмування</a></small>
-                        </div>
-
-                        <div class="article__info__preview">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                            assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                            similique
-                            ullam?
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article">
-                    <div class="article__image" style="background-image: url('./img/black-photo.jpg');">
-                    </div>
-                    <div class="article__info">
-                        <a href="#">Розробка Node.js</a>
-                        <div class="article__info__meta">
-                            <small>Категорія: <a href="#">Програмування</a></small>
-                        </div>
-
-                        <div class="article__info__preview">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                            assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                            similique
-                            ullam?
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article">
-                    <div class="article__image" style="background-image: url('./img/black-photo.jpg');">
-                    </div>
-                    <div class="article__info">
-                        <a href="#">Розробка Node.js</a>
-                        <div class="article__info__meta">
-                            <small>Категорія: <a href="#">Програмування</a></small>
-                        </div>
-
-                        <div class="article__info__preview">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                            assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                            similique
-                            ullam?
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article">
-                    <div class="article__image" style="background-image: url('./img/black-photo.jpg');">
-                    </div>
-                    <div class="article__info">
-                        <a href="#">Розробка Node.js</a>
-                        <div class="article__info__meta">
-                            <small>Категорія: <a href="#">Програмування</a></small>
-                        </div>
-
-                        <div class="article__info__preview">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                            assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                            similique
-                            ullam?
-                        </div>
-                    </div>
-                </article>
 
             </div>
         </div>

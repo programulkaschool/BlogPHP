@@ -1,4 +1,4 @@
-<header id="header">
+<footer id="header">
             <div class="header__top">
                 <div class="container">
                     <div class="header__top__logo">
@@ -15,4 +15,6 @@
                 </div>
             </div>
 
-        </header>
+</footer>
+<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="../js/javascript.js"></script>

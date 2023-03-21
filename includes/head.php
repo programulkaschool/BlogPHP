@@ -15,3 +15,9 @@
     <!-- END BOOTSTRAP -->
 </head>
 <body>
+<?php $articles_select_all = mysqli_query($connection, "SELECT * FROM `articles`"); 
+$articles_all = [];
+
+while ($articles = mysqli_fetch_assoc($articles_select_all)) { 
+    $articles_all[]=mysqli_fetch_assoc($articles_select_all);
+};

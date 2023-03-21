@@ -45,43 +45,30 @@ include("./includes/header.php");?>
                             <h3>Коментарі</h3>
                             <div class="block_content">
                                 <div class="articles articles_vertical new_post flex-col">
+                                    <?php $comments_select = mysqli_query($connection, "SELECT * FROM comments WHERE id=".$articles_art['id']) ;
+                                    if(mysqli_num_rows($comments_select)<=0){
+                                        echo "Коментарі відсутні...";
+                                    } else {
+                                        while ($comm = mysqli_fetch_assoc($comments_select)){
+                                    ?>
                                     <article class="article marg">
                                         <div class="article__image"
                                             style="background-image: url('./img/black-photo.jpg');">
                                         </div>
                                         <div class="article__info">
-                                            <p>Johny Flame</p>
+                                            <p><?php echo $comm["name"]." ".["author"]; ?></p>
                                             <div class="article__info__meta">
-                                                <small>2021-09-03 16:25:24</small>
+                                                <small><?php echo $comm["pubdate"]; ?></small>
                                             </div>
 
                                             <div class="article__info__preview">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                                                assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                                                similique
-                                                ullam?
+                                            <?php  echo substr($comm["text"], 0, 100) . "..."; ?>
                                             </div>
                                         </div>
                                     </article>
-
-                                    <article class="article marg">
-                                        <div class="article__image"
-                                            style="background-image: url('./img/black-photo.jpg');">
-                                        </div>
-                                        <div class="article__info">
-                                            <p>Johny Flame</p>
-                                            <div class="article__info__meta">
-                                                <small>2021-09-03 16:25:24</small>
-                                            </div>
-
-                                            <div class="article__info__preview">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet iusto
-                                                assumenda dolores accusamus molestias quasi delectus? Adipisci,
-                                                similique
-                                                ullam?
-                                            </div>
-                                        </div>
-                                    </article>
+<?php };
+};?>
+                                    
                                 </div>
                             </div>
                         
@@ -89,30 +76,30 @@ include("./includes/header.php");?>
                                 <h3>Добавити коментар</h3>
                                 <div class="block_forms">
 
-                                    <form action="#" class="forms">
+                                    <form action="#" class="forms" id="form_comments">
                                         <div class="form_group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="text" name="name" placeholder="Ім'я" class="form_control name_my_input">
+                                                    <input type="text" name="name" placeholder="Ім'я" class="form_control name_my_input" value="">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="text" name="nickname" placeholder="Нікнейм"
-                                                        class="form_control nickname_my_input">
+                                                        class="form_control nickname_my_input" value="">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form_group">
-                                            <textarea name="text" placeholder="Опис..." class="form_control text_my_input"></textarea>
+                                            <textarea name="text" placeholder="Опис..." class="form_control text_my_input" value=""></textarea>
                                         </div>
 
                                         <div class="form_group">
                                             <input type="submit" value="Добавити коментар" class="form_control">
                                         </div>
 
-
+<div id="text_log_comments"> </div>
                                     </form>
-
+<div class="add_comments" id_post_comments=<?php echo $articles_art['id']?> style="width:100%; height:30px; background-color:black; color:#fff; text-align:center; cursor:pointer;"> Add comments</div>
                                 </div>
                             </div>
                     </section>
