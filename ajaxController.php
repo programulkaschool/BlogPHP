@@ -29,34 +29,39 @@ if (isset($_POST['elements']) && isset($_POST['id_int_my'])) {
 
 
 //echo $_POST['admin_btn'];
-if (isset($_POST['admin_btn'])){
+if (isset($_POST['admin_btn'])) {
     $delete = $_POST['admin_btn'];
-        mysqli_query($connection, "DELETE FROM articles WHERE id = $delete ");
-    
+    mysqli_query($connection, "DELETE FROM articles WHERE id = $delete ");
 }
 
-if(isset($_POST['admin_checkbox']) && isset($_POST['check_admin'])) {
+if (isset($_POST['admin_checkbox']) && isset($_POST['check_admin'])) {
 
-    mysqli_query($connection, "UPDATE `articles` SET `post_look`=" . $_POST['check_admin'] . " WHERE `id` =". $_POST['admin_checkbox']);
-
-
+    mysqli_query($connection, "UPDATE `articles` SET `post_look`=" . $_POST['check_admin'] . " WHERE `id` =" . $_POST['admin_checkbox']);
 }
 
-if (isset($_POST['admin_del_btn'])){
+if (isset($_POST['admin_del_btn'])) {
     $delete_thr = $_POST['admin_del_btn'];
-        mysqli_query($connection, "DELETE FROM `articles_categories` WHERE id=". $delete_thr );
-    
+    mysqli_query($connection, "DELETE FROM `articles_categories` WHERE id=" . $delete_thr);
 }
 
-if (isset($_POST['admin_add_btn'])){
+if (isset($_POST['admin_add_btn'])) {
     echo $_POST['admin_add_btn'];
-        mysqli_query($connection, "INSERT INTO `articles_categories` (`title`) VALUES ('". $_POST['admin_add_btn'] . "')");
-    
+    mysqli_query($connection, "INSERT INTO `articles_categories` (`title`) VALUES ('" . $_POST['admin_add_btn'] . "')");
 }
 
-if(isset($_POST['admin_upd_btn']) && isset($_POST['val_admin'])) {
+if (isset($_POST['admin_upd_btn']) && isset($_POST['val_admin'])) {
+    echo $_POST['val_admin'];
+    mysqli_query($connection, "UPDATE `articles_categories` SET `title` ='" . $_POST['val_admin'] . "' WHERE `id` =" . $_POST['admin_upd_btn']);
+}
 
-    mysqli_query($connection, "UPDATE `articles` SET `title`=" . $_POST['val_admin'] . " WHERE `id` =". $_POST['admin_upd_btn']);
 
+if (isset($_POST['title_sc']) && isset($_POST['text_sc']) && isset($_POST['select_sc']) && isset($_POST['checkbox_sc'])) {
+    $_POST['checkbox_sc'] == "true" ? $post_scd = 1 : $post_scd =  0;
 
+    $result = mysqli_query($connection, "INSERT INTO `articles` (`title`,`text`,`categorie_id`,`pubdate`,`post_look`) VALUES ('" . $_POST['title_sc'] . "','" . $_POST['text_sc'] . "','" . $_POST['select_sc'] . "',NOW(),'" . $post_scd . "')");
+
+if (!$result) {
+    die('Помилка запиту: ' . mysqli_error($connection));
+}
+    //echo $_POST['title_sc'];
 }

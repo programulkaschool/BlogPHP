@@ -72,14 +72,36 @@ jQuery(document).ready(function () {
         })
     });
     jQuery("body").on("click", "#upd_btn", function () {
-        var admin_upd_btn = jQuery(this).next().attr("admin_del_btn");
-        var val_admin = jQuery(this).prev();
-        console.log(val_admin);
+        var admin_upd_btn = jQuery("#del_btn").attr("admin_del_btn");
+        var val_admin = jQuery(this).prev().val();
 
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
             data: { admin_upd_btn: admin_upd_btn, val_admin: val_admin },
+            success: function (data, status, xhr) {
+                console.log(data);
+                location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+
+            }
+        })
+    });
+    jQuery("body").on("click", "#save_btn", function () {
+        var title_sc = jQuery('#title_scd').val();
+        var text_sc = jQuery('#text_scd').val();
+        var select_sc = jQuery('#select_scd option:selected').val();
+        var checkbox_sc = jQuery('#check_scd').is(':checked');
+
+        console.log(title_sc);
+        console.log(text_sc);
+        console.log(select_sc); console.log(checkbox_sc); 
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { title_sc: title_sc, text_sc: text_sc, select_sc: select_sc, checkbox_sc: checkbox_sc},
             success: function (data, status, xhr) {
                 console.log(data);
                 //location.reload();
@@ -88,27 +110,22 @@ jQuery(document).ready(function () {
 
             }
         })
-    });
-
+    })
 });
 
 function openCity(evt, cityName) {
-    // Declare all variables
     var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
