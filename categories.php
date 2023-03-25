@@ -10,7 +10,7 @@
         <div class="row">
             <section class="content_left col-xl-8">
                 <div class="block new_text">
-                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` =" . (int)$_GET['id']);
+                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` =" . (int)$_GET['id'] . " AND `post_look` = 1");
                     ?>
                     <a href="#">Всі пости</a>
 

@@ -2,7 +2,7 @@
 
 <?php include("./includes/header.php") ?>
 
-<?php $categor_all = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id`");
+<?php $categor_all = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `post_look` ");
 ?>
 
 <div id="content">
@@ -10,7 +10,7 @@
         <div class="row">
             <section class="content_left col-xl-8">
                 <div class="block new_text">
-                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 6");
+                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` WHERE `post_look` = 1 ORDER BY `id` DESC LIMIT 6");
                     ?>
                     <a href="#">Всі пости</a>
                     <h3>Нові пости в блозі</h3>
@@ -55,7 +55,7 @@
 
 
                 <div class="block">
-                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id`=2 ORDER BY `id` DESC LIMIT 6");
+                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id`=2 AND `post_look` = 1 ORDER BY `id` DESC LIMIT 6");
                     ?>
                     <a href="#">Всі пости</a>
                     <h3>Програмування</h3>
@@ -100,7 +100,7 @@
 
 
                 <div class="block">
-                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id`=1 ORDER BY `id` DESC LIMIT 6");
+                    <?php $categor = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id`=1 AND `post_look` = 1 ORDER BY `id` DESC LIMIT 6");
                     ?>
                     <a href="#">Всі пости</a>
                     <h3>Безпека у інтернеті</h3>

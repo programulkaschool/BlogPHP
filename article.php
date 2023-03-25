@@ -4,7 +4,7 @@
 <div id="content">
     <div class="container">
         <div class="row">
-            <?php $articles_ids = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id`=" . (int)$_GET['id']);
+            <?php $articles_ids = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id`=" . (int)$_GET['id'] . " AND `post_look` = 1");
             if (mysqli_num_rows($articles_ids) <= 0) { ?>
 
                 <section class="content_left col-xl-8">

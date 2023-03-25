@@ -57,36 +57,53 @@ if (isset($_POST["usr"]) && isset($_POST["addtext"]) && isset($_POST["selectedVa
     mysqli_query($connection, "INSERT INTO articles (title,text,categorie_id,post_look,pubdate) VALUES ('" . $_POST['add_post_title'] . "', '" . $_POST['add_post_text'] . "', '" . $_POST['chec_post_selected'] . "', '" . $_POST['chec_post'] . "',  NOW()  ) ");
 };
 
-if ($_FILES['customFile']['error'] === UPLOAD_ERR_OK) {
-    $filename = $_FILES['customFile']['name'];
-    $file_tmp = $_FILES['customFile']['tmp_name'];
-    $max_size = 2 * 1024 * 1024;
-    if ($_FILES['customFile']['size'] > $max_size) {
-        echo 'ERROR: File size is too large';
-        exit;
+
+
+
+if (isset($_POST["post_all_edit"])) {
+    
+    $post_all_edit = json_decode($_POST["post_all_edit"]);
+    $sql = mysqli_query($connection, "UPDATE `articles` SET `title`='" . $post_all_edit -> post_title_val . "', `text`='" . $post_all_edit -> post_text_val . "', `categorie_id`='" . $post_all_edit -> selected_post_categorie . "' WHERE `id`='" . $post_all_edit -> post_id . "' ");
+    if(!$sql){
+        die('Error: ' . mysqli_error($connection));
+    }
+    if ($post_all_edit -> photo_name !="false"){
+            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $post_all_edit -> photo_name . "' WHERE `id`='" . $post_all_edit -> post_id . "'");
     };
-    $upload_dir = 'img/';
-    $upload_file = $upload_dir . $filename;
-    if (move_uploaded_file($file_tmp, $upload_file)) {
-        chmod($upload_file, 0666);
-        echo $filename;
-        mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename . "' WHERE `id`='" . $_POST["edit_post_id"] . "' ");
+    var_dump($post_all_edit);
+    
+
+    if ($_FILES['customFile']['error'] === UPLOAD_ERR_OK) {
+        $filename = $_FILES['customFile']['name'];
+        $file_tmp = $_FILES['customFile']['tmp_name'];
+        $max_size = 2 * 1024 * 1024;
+        if ($_FILES['customFile']['size'] > $max_size) {
+            echo 'ERROR: File size is too large';
+            exit;
+        };
+        $upload_dir = 'img/';
+        $upload_file = $upload_dir . $filename;
+        if (move_uploaded_file($file_tmp, $upload_file)) {
+            chmod($upload_file, 0666);
+            echo $filename;
+            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename . "' WHERE `id`='" . $post_all_edit -> post_id . "' ");
+            
+        } else {
+            echo 'Error: Unable to move uploaded file.';
+        };
     } else {
         echo 'Error: Unable to move uploaded file.';
-    };
-} else {
-    echo 'Error: Unable to move uploaded file.';
+    }
 }
-
 // if (isset($_POST["usr"]) && isset($_POST["addtext"]) && isset($_POST["selectedVal"]) && isset($_POST["oneortwo"])) {
 //     mysqli_query($connection, "INSERT INTO articles (title,text,categorie_id,post_look,pubdate) VALUES ('" . $_POST['add_post_title'] . "', '" . $_POST['add_post_text'] . "', '" . $_POST['chec_post_selected'] . "', '" . $_POST['chec_post'] . "',  NOW()  ) ");
 // };
 
-if (isset($_POST["post_title_val"]) && isset($_POST["post_text_val"]) && isset($_POST["selected_post_categorie"]) && isset($_POST["post_id"])) {
-    var_dump($_POST["photo_name"]!="false");
-    $sql = mysqli_query($connection, "UPDATE `articles` SET `title`='" . $_POST["post_title_val"] . "', `text`='" . $_POST["post_text_val"] . "', `categorie_id`='" . $_POST["selected_post_categorie"] . "' WHERE `id`='" . $_POST["post_id"] . "' ");
+// if (isset($_POST["post_title_val"]) && isset($_POST["post_text_val"]) && isset($_POST["selected_post_categorie"]) && isset($_POST["post_id"])) {
+//     var_dump($_POST["photo_name"]!="false");
+//     $sql = mysqli_query($connection, "UPDATE `articles` SET `title`='" . $_POST["post_title_val"] . "', `text`='" . $_POST["post_text_val"] . "', `categorie_id`='" . $_POST["selected_post_categorie"] . "' WHERE `id`='" . $_POST["post_id"] . "' ");
 
-    if ($_POST["photo_name"]!="false"){
-        mysqli_query($connection, "UPDATE `articles` SET `img`='" . $_POST["photo_name"] . "' WHERE `id`='" . $_POST["post_id"] . "'");
-    };
-};
+//     if ($_POST["photo_name"]!="false"){
+//         mysqli_query($connection, "UPDATE `articles` SET `img`='" . $_POST["photo_name"] . "' WHERE `id`='" . $_POST["post_id"] . "'");
+//     };
+// };

@@ -238,14 +238,34 @@ $(document).ready(function () {
         reader.readAsDataURL(file);
     });
 
-    jQuery(".save_change_btn").click(function () {
+    jQuery(".save_buttonn1").click(function () {
         var formData = new FormData();
 
-        var pstid = jQuery(this).attr("edit_post_id");
-        console.log(pstid);
+        var post_title_val = jQuery(".title_text").val();
+        var post_text_val = jQuery(".pst_text").val();
+        var selected_post_categorie = jQuery(".cat_slct option:selected").val()
+        var post_id = jQuery(".save_change_btn").attr("edit_post_id");
+        var photo_name;
+
+       
+
+        if (fa !== undefined) {
+            photo_name = fa.split("/").pop();
+        } else{
+            photo_name = false;
+        }
+
+        var post_all_edit = {
+            post_title_val:post_title_val,
+            post_text_val:post_text_val,
+            selected_post_categorie:selected_post_categorie,
+            post_id:post_id,
+            photo_name:photo_name,
+        };
+      //  var pstid = jQuery(this).attr("edit_post_id");
 
         formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
-        formData.append('edit_post_id', pstid);
+        formData.append('post_all_edit', JSON.stringify(post_all_edit));
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
@@ -260,39 +280,22 @@ $(document).ready(function () {
         });
     })
 
-    jQuery("body").on("click", ".save_buttonn1", function () {
-        var post_title_val = jQuery(".title_text").val();
-        var post_text_val = jQuery(".pst_text").val();
-        var selected_post_categorie = jQuery(".cat_slct option:selected").val()
-        var post_id = jQuery(".save_change_btn").attr("edit_post_id");
 
+//     jQuery("body").on("click", ".save_buttonn1", function () {
+       
+//         console.log(photo_name);
 
-        console.log(post_title_val);
-        console.log(post_text_val);
-        console.log(selected_post_categorie);
-        console.log(post_id);
-
-        var photo_name;
-
-        if (fa !== undefined) {
-            photo_name = fa.split("/").pop();
-        } else{
-            photo_name = false;
-        }
-
-        console.log(photo_name);
-
-        jQuery.ajax({
-            url: 'ajaxController.php',
-            type: 'Post',
-            data: { photo_name: photo_name, post_title_val: post_title_val, post_text_val: post_text_val, selected_post_categorie: selected_post_categorie, post_id:post_id },
-            success: function (data, status, xhr) {
-                console.log(data);
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-            }
-        });
-    });
+//         jQuery.ajax({
+//             url: 'ajaxController.php',
+//             type: 'Post',
+//             data: { photo_name: photo_name, post_title_val: post_title_val, post_text_val: post_text_val, selected_post_categorie: selected_post_categorie, post_id:post_id },
+//             success: function (data, status, xhr) {
+//                 console.log(data);
+//             },
+//             error: function (jqXhr, textStatus, errorMessage) {
+//             }
+//         });
+//     });
 
 
 });

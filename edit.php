@@ -87,13 +87,6 @@ if (mysqli_num_rows($articles_edit_post) <= 0) { ?>
                         <input class="form-control upload_photo" type="file" id="customFile" name="customFile">
                     </div>
 
-                    <div class="btn_gray">
-                        <button edit_post_id="<?php echo $articles_single_post['id'];?>" class="save_change_btn btn" type="button" class="btn" style="width: 100%; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                            Save & Change file
-                        </button>
-                    </div>
-
-
                     <div id="selected-images">
                         <img class="pht upload_photo_img" src="img/<?php echo $articles_single_post["img"] ?>" alt="">
                     </div>
