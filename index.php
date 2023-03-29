@@ -2,7 +2,7 @@
 
   <?php include("./includes/header.php") ?>
 
-  <?php $articles_all = mysqli_query($connection, "SELECT * FROM `articles`"); ?>
+
 
 
 
@@ -11,7 +11,7 @@
           <div class="row">
               <section class="content_left col-xl-8">
                   <div class="block new_text">
-                      <?php $categories_select = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 6"); ?>
+                      <?php $categories_select = mysqli_query($connection, "SELECT * FROM `articles` WHERE `post_lok` = 1 ORDER BY `id` DESC LIMIT 6"); ?>
                       <a href="#">Всі пости</a>
                       <h3>Нові пости в блозі</h3>
                       <div class="block__content">

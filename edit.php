@@ -8,7 +8,7 @@
 
             <?php $articles_post = mysqli_query($connection, "SELECT * FROM `articles`"); ?>
 
-            <?php $articles_id = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id`= " . (int)$_GET["id"]);
+            <?php $articles_id = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id`= " . (int)$_GET["id"] . " AND `post_look` = 1 ");
             if (mysqli_num_rows($articles_id) <= 0) {
             ?>
                 <section class="content_left col-xl-8">
@@ -80,7 +80,7 @@
                         <label for="formFile" class="form-label photo_input">Add photo</label>
                         <input class="form-control custom_file_post_photo" type="file" id="customFile" name="customFile">
                     </div>
-                    <button type="button" class="btn btn-secondary upload_photo_wid_and_heigе upload_photo">Secondary</button>
+
 
                     <img src="/img/<?php echo $articles_edit_post['img'] ?>" class="img-thumbnail" alt="...">
 

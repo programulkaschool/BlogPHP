@@ -73,7 +73,7 @@
                                                     };
                                                 };
                                                 ?>
-                                <small>Назва поста: <a href="/article.php?id=<?php echo $comment["articles_id"] ?>"><?php echo $art_title; ?></a></small>
+                                <small>Назва поста: <a href="/article.php?id=<?php echo $comment["articles_id"]; ?>"><?php echo $art_title; ?></a></small>
                             </div>
 
 

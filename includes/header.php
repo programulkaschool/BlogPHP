@@ -37,3 +37,5 @@
                 </div>
             </div>
         </header>
+        <?php $articles_all = mysqli_query($connection, "SELECT * FROM `articles`"); ?>
+

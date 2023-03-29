@@ -123,6 +123,15 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                                         </tr>
 
                                         <tr>
+                                            <th scope="row">PHOTO</th>
+                                            <td>
+                                                <input class="form-control custom_file_add_post_photo" id="add_photo_post" type="file">
+                                                <img src="/img/photo01.jpg" class="img-thumbnail url_src_photo" alt="...">
+                                            </td>
+                                        </tr>
+                                        
+
+                                        <tr>
                                             <th scope="row">ON/OF</th>
                                             <td>
                                                 <div class="form-check form-switch ">
@@ -132,11 +141,11 @@ $categories_select = mysqli_query($connection, "SELECT * FROM `articles`");
                                             </td>
 
                                         </tr>
-                                                        <tr>
-                                                        <th scope="row">SAVE</th>
+                                        <tr>
+                                            <th scope="row">SAVE</th>
                                             <td><button type="button" class="btn btn-success add_title efect">Add button</button></td>
-                                            </tr>
-                                        
+                                        </tr>
+
                                     </tbody>
 
                                 </table>

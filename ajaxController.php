@@ -83,14 +83,21 @@ if (isset($_POST['add_post_title']) && isset($_POST['add_post_text']) && isset($
 // };
 
 // update post
-if (isset($_POST["all_post_edit"])) {
 
-        mysqli_query($connection, "UPDATE `articles` SET `title`='" . $_POST["all_post_edit"]["change_post_title"] . "', `text`='" . $_POST["all_post_edit"]["change_post_text"] . "', `categorie_id`='" . $_POST["all_post_edit"]["change_post_categories"] . "' WHERE `id`= " . $_POST["all_post_edit"]["change_id_post_update"]);
-        
-        if ($_POST["all_post_edit"]["name_src_photo"] != false ) {
-            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $_POST["name_src_photo"] . "' WHERE `id`= " . $_POST["all_post_edit"]["change_id_post_update"]);
-        };
-   
+if (isset($_POST["all_post_edit"])) {
+    $decode_json = json_decode($_POST["all_post_edit"]);
+    mysqli_real_escape_string($connection, $decode_json->change_post_text);
+    var_dump(mysqli_real_escape_string($connection, $decode_json->change_post_text));
+    $result =  mysqli_query($connection, "UPDATE `articles` SET `title`='" . mysqli_real_escape_string($connection, $decode_json->change_post_title) . "', `text`='" . mysqli_real_escape_string($connection, $decode_json->change_post_text) . "', `categorie_id`='" . $decode_json->change_post_categories . "' WHERE `id`= " . $decode_json->change_id_post_update);
+
+    if (!$result) {
+        die("помилка запиту:" . mysqli_error($connection));
+    }
+
+    if ($decode_json->name_src_photo != false) {
+        mysqli_query($connection, "UPDATE `articles` SET `img`='" . $decode_json->name_src_photo . "' WHERE `id`= " . $decode_json->change_id_post_update);
+    };
+
 
     if ($_FILES['customFile']['error'] === UPLOAD_ERR_OK) {
         $filename = $_FILES['customFile']['name'];
@@ -105,9 +112,29 @@ if (isset($_POST["all_post_edit"])) {
         if (move_uploaded_file($fil_tmp, $upload_file)) {
             chmod($upload_file, 0666);
             // echo $filename;
-            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename . "' WHERE `id`= " . $_POST["id_post_update"]);
+            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename . "' WHERE `id`= " . $decode_json->change_id_post_update);
         } else {
             echo 'Error: Unable to move uploaded file.';
         };
     }
 };
+
+
+if ($_FILES['add_photo_post']['error'] === UPLOAD_ERR_OK) {
+    $filename_photo = $_FILES['customFile']['name'];
+    $fil_tmp_photo = $_FILES['customFile']['tmp_name'];
+    $max_size_photo = 3 * 1024 * 1024;
+
+    if ($_FILES['add_photo_post']['size'] > $max_size_photo) {
+        echo 'Error: File size is too large';
+        exit;
+    };
+    $upload_dir_photo = 'img/';
+    $upload_file_photo = $upload_dir_photo . $filename_photo;
+
+    if (move_uploaded_file($fil_tmp_photo, $upload_file_photo)) {
+        chmod($upload_file_photo, 0666);
+        // echo $filename;
+       // mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename_photo . "' WHERE `id`= " . $decode_json->change_id_post_update);
+    }
+}

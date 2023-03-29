@@ -20,7 +20,7 @@ include('includes/header.php');
                     <div class="block__content">
                         <div class="articles articles__horizontal new_post">
                             <?php
-                            $articles_categories = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` =" . (int)$_GET["id"]);
+                            $articles_categories = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` =" . (int)$_GET["id"] . " AND `post_look` = 1 ");
                             while ($articles = mysqli_fetch_assoc($articles_categories)) {
                             ?>
                                 <article class="article">
