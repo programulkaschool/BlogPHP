@@ -22,15 +22,22 @@ include("./includes/header.php"); ?>
                 </section>
 
             <?php } else {
-                
-               
+
+
             ?>
                 <section class="content__left col-xl-8">
                     <div class="block">
                         <a href="#">Всі пости</a>
-                        <h3>Нові пости у блозі</h3>
+                        <?php foreach ($categories as $cat) {
+                            if ($cat['id'] == (int)$_GET['id']) {
+
+                        ?>
+                                <h3><?php echo $cat['title'] ?></h3>
+                        <?php break;
+                            }
+                        }; ?>
                         <div class="block_content">
-                            <?php $articles = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 6"); ?>
+                            <?php $articles = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC"); ?>
                             <div class="articles articles_horizontal new_post">
 
                                 <?php while ($articles = mysqli_fetch_assoc($articles_categories)) { ?>

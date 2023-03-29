@@ -22,6 +22,7 @@ include("./includes/header.php"); ?>
                                 <th scope="col">Категорія</th>
                                 <th scope="col">Дата</th>
                                 <th scope="col">ON/OFF</th>
+                                <th scope="col">Редагувати</th>
                                 <th scope="col">Видалити</th>
 
                             </tr>
@@ -50,12 +51,16 @@ include("./includes/header.php"); ?>
                                     <td><?php echo $table["title"]; ?></td>
                                     <td><?php echo $art_cat; ?></td>
                                     <td><?php echo $table["pubdate"]; ?></td>
+                                    
                                     <td>
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" admin_checkbox="<?php echo $table['id']; ?>" <?php echo $on; ?>>
                                         </div>
+                                        
                                     </td>
+                                    <td><a href="/edit.php?id=<?php echo $table["id"];?>"><button class="btn btn-primary">Edit</button></a></td>
                                     <td><button class="btn btn-primary" id="tr_btn" admin_btn="<?php echo $table['id'] ?>" type="submit">Видалити</button></td>
+                                    
                                 </tr>
                             <?php }; ?>
                         </tbody>

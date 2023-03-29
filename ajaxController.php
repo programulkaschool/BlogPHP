@@ -50,7 +50,7 @@ if (isset($_POST['admin_add_btn'])) {
 }
 
 if (isset($_POST['admin_upd_btn']) && isset($_POST['val_admin'])) {
-    echo $_POST['val_admin'];
+    
     mysqli_query($connection, "UPDATE `articles_categories` SET `title` ='" . $_POST['val_admin'] . "' WHERE `id` =" . $_POST['admin_upd_btn']);
 }
 
@@ -64,4 +64,12 @@ if (!$result) {
     die('Помилка запиту: ' . mysqli_error($connection));
 }
     //echo $_POST['title_sc'];
+}
+
+if(isset($_POST['title_edit']) && isset($_POST['text_edit']) && isset($_POST['select_edit']) && isset($_POST['showimg']) && isset($_POST['sv_post']) && isset($_POST['checkbox_edit'])){
+    $_POST['checkbox_edit'] == "true" ? $post_edit = 1 : $post_edit =  0;
+    $result = mysqli_query($connection, "UPDATE `articles` SET `title` ='" . $_POST['title_edit'] . "', `text` ='" . $_POST['text_edit'] . "', `categorie_id` ='" . $_POST['select_edit'] . "', `img` ='" . $_POST['showimg']. "', `post_look` = '" . $post_edit ."' WHERE `id`='" . $_POST['sv_post'] . "'");
+    if (!$result) {
+        die('Помилка запиту: ' . mysqli_error($connection));
+    }
 }

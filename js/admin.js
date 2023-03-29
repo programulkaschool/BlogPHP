@@ -96,12 +96,12 @@ jQuery(document).ready(function () {
 
         console.log(title_sc);
         console.log(text_sc);
-        console.log(select_sc); console.log(checkbox_sc); 
+        console.log(select_sc); console.log(checkbox_sc);
 
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: { title_sc: title_sc, text_sc: text_sc, select_sc: select_sc, checkbox_sc: checkbox_sc},
+            data: { title_sc: title_sc, text_sc: text_sc, select_sc: select_sc, checkbox_sc: checkbox_sc },
             success: function (data, status, xhr) {
                 console.log(data);
                 //location.reload();
@@ -110,8 +110,47 @@ jQuery(document).ready(function () {
 
             }
         })
-    })
+    });
+    jQuery("body").on("click", "#edit_btn", function () {
+        jQuery("#overlay").fadeIn();
+    });
+
+
+    jQuery("body").click(function (e) {
+        if (jQuery(e.target).attr("id") != "edit_btn" && jQuery(e.target).attr("id") != "overlay" && jQuery(e.target).attr("id") != "gallery") {
+            jQuery("#overlay").fadeOut();
+        }
+    });
+
+    jQuery("body").on("click", ".responsive img", function () {
+        jQuery(".text-center .img-thumbnail").attr("src", jQuery(this).attr("src"))
+
+    });
+
+    jQuery("body").on("click", "#save_button", function () {
+        var title_edit = jQuery('#title_edit').val();
+        var text_edit = jQuery('#text_edit').val();
+        var select_edit = jQuery('#select_edit option:selected').val();
+        var checkbox_edit = jQuery('#check_edit').is(':checked');
+        var img_edit = jQuery("#img_center img").attr("src");
+        var sv_post = jQuery(this).attr("sv_edit");
+        var editimg = img_edit.split("/");
+        var showimg = editimg[editimg.length - 1];
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { title_edit: title_edit, text_edit: text_edit, select_edit: select_edit, checkbox_edit: checkbox_edit, showimg: showimg, sv_post: sv_post },
+            success: function (data, status, xhr) {
+                console.log(data);
+                //location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+
+            }
+        })
+    });
 });
+
 
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
