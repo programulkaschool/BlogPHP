@@ -181,10 +181,15 @@ $(document).ready(function () {
 
 
     jQuery("body").on("click", ".addpst", function () {
+        var formDataPost = new FormData();
+        console.log(jQuery('#add_photo')[0].files[0]);
+        formDataPost.append('add_photo', jQuery('#add_photo')[0].files[0]);
+
         var usr = jQuery(".pstttl").val();
         var addtext = jQuery(".txtadd").val();
         var selectedVal = jQuery('.myselect').val();
         var yn = jQuery(".ch").prop('checked');
+        var upload_photo_img
         var oneortwo;
         yn ? oneortwo = 1 : oneortwo = 0;
 
@@ -195,8 +200,11 @@ $(document).ready(function () {
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: { usr: usr, addtext: addtext, selectedVal: selectedVal, oneortwo: oneortwo },
+            data: formDataPost,
+            processData: false,
+            contentType: false,
             success: function (data, status, xhr) {
+                console.log(data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
             }
@@ -247,22 +255,22 @@ $(document).ready(function () {
         var post_id = jQuery(".save_change_btn").attr("edit_post_id");
         var photo_name;
 
-       
+
 
         if (fa !== undefined) {
             photo_name = fa.split("/").pop();
-        } else{
+        } else {
             photo_name = false;
         }
 
         var post_all_edit = {
-            post_title_val:post_title_val,
-            post_text_val:post_text_val,
-            selected_post_categorie:selected_post_categorie,
-            post_id:post_id,
-            photo_name:photo_name,
+            post_title_val: post_title_val,
+            post_text_val: post_text_val,
+            selected_post_categorie: selected_post_categorie,
+            post_id: post_id,
+            photo_name: photo_name,
         };
-      //  var pstid = jQuery(this).attr("edit_post_id");
+        //  var pstid = jQuery(this).attr("edit_post_id");
 
         formData.append(('customFile'), jQuery('#customFile')[0].files[0]);
         formData.append('post_all_edit', JSON.stringify(post_all_edit));
@@ -281,21 +289,30 @@ $(document).ready(function () {
     })
 
 
-//     jQuery("body").on("click", ".save_buttonn1", function () {
-       
-//         console.log(photo_name);
+    //     jQuery("body").on("click", ".save_buttonn1", function () {
 
-//         jQuery.ajax({
-//             url: 'ajaxController.php',
-//             type: 'Post',
-//             data: { photo_name: photo_name, post_title_val: post_title_val, post_text_val: post_text_val, selected_post_categorie: selected_post_categorie, post_id:post_id },
-//             success: function (data, status, xhr) {
-//                 console.log(data);
-//             },
-//             error: function (jqXhr, textStatus, errorMessage) {
-//             }
-//         });
-//     });
+    //         console.log(photo_name);
+
+    //         jQuery.ajax({
+    //             url: 'ajaxController.php',
+    //             type: 'Post',
+    //             data: { photo_name: photo_name, post_title_val: post_title_val, post_text_val: post_text_val, selected_post_categorie: selected_post_categorie, post_id:post_id },
+    //             success: function (data, status, xhr) {
+    //                 console.log(data);
+    //             },
+    //             error: function (jqXhr, textStatus, errorMessage) {
+    //             }
+    //         });
+    //     });
+
+    $("#add_photo").change(function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.photo_add').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file);
+    });
 
 
 });

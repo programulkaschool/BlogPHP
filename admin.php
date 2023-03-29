@@ -62,7 +62,7 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
                                 </td>
                                 <td style="text-align: center">
-                                    <a href="/edit.php?id=<?php echo $cot["id"]?>" target="_blank"><button class="btn btn-primary" type="submit">Edit</button></a>
+                                    <a href="/edit.php?id=<?php echo $cot["id"] ?>" target="_blank"><button class="btn btn-primary" type="submit">Edit</button></a>
                                 </td>
                                 <td style="text-align: center"><button id_delete="<?php echo ($cot["id"]) ?>" type="button" class="btn-close delbtn" aria-label="Close"></button></td>
                             </tr>
@@ -95,30 +95,33 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="text-algin:center;" scope="col">№</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Text</th>
-                            <th scope="col">Category</th>
-                            <th scope="col" style="text-align: center;">OFF/ON</th>
-                            <th scope="col"></th>
+                            <th style="text-algin:center;" scope="col">Func</th>
+                            <th style="text-algin:center;" scope="col">Type</th>
                         </tr>
                     </thead>
                     <tbody>
 
 
                         <tr>
-                            <th scope="row" style="text-algin:center;">1</th>
+                            <th scope="row" style="text-algin:center;">TITLE</th>
                             <td>
                                 <div class="input-group flex-nowrap">
                                     <input type="text" class="form-control pstttl" placeholder="Post Title" aria-label="Post Title" aria-describedby="addon-wrapping">
                                 </div>
                             </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="text-algin:center;">TEXT</th>
                             <td>
                                 <div class="form-floating">
                                     <textarea class="form-control txtadd" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                                     <label for="floatingTextarea">Comment</label>
                                 </div>
                             </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" style="text-algin:center;">CATEGORIES</th>
                             <td>
                                 <select class="form-select form-select-sm myselect" aria-label=".form-select-sm example">
                                     <option selected>Select Categories</option>
@@ -133,19 +136,36 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
 
                                 </select>
                             </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" style="text-algin:center;">Photo</th>
+                            <td>
+                                <div>
+                                    <input class="form-control upload_photo" type="file" id="add_photo" name="customFile">
+                                </div>
+                                <div id="selected-images">
+                                    <img class="pht photo_add" src="img/ava.png" alt="">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" style="text-algin:center;">OFF/ON</th>
                             <td>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input ch" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                                     <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                 </div>
                             </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" style="text-algin:center;">CONFIRM</th>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-dark addpst">ADD POST</button>
                             </td>
-
                         </tr>
-
-
 
                     </tbody>
                 </table>
@@ -155,7 +175,7 @@ $warf = mysqli_query($connection, "SELECT * FROM `articles`");
     </div>
 </div>
 </div>
-<?php include('includes/footer.php');?>
+<?php include('includes/footer.php'); ?>
 </body>
 
 </html>

@@ -61,17 +61,17 @@ if (isset($_POST["usr"]) && isset($_POST["addtext"]) && isset($_POST["selectedVa
 
 
 if (isset($_POST["post_all_edit"])) {
-    
+
     $post_all_edit = json_decode($_POST["post_all_edit"]);
-    $sql = mysqli_query($connection, "UPDATE `articles` SET `title`='" . $post_all_edit -> post_title_val . "', `text`='" . $post_all_edit -> post_text_val . "', `categorie_id`='" . $post_all_edit -> selected_post_categorie . "' WHERE `id`='" . $post_all_edit -> post_id . "' ");
-    if(!$sql){
+    $sql = mysqli_query($connection, "UPDATE `articles` SET `title`='" . $post_all_edit->post_title_val . "', `text`='" . $post_all_edit->post_text_val . "', `categorie_id`='" . $post_all_edit->selected_post_categorie . "' WHERE `id`='" . $post_all_edit->post_id . "' ");
+    if (!$sql) {
         die('Error: ' . mysqli_error($connection));
     }
-    if ($post_all_edit -> photo_name !="false"){
-            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $post_all_edit -> photo_name . "' WHERE `id`='" . $post_all_edit -> post_id . "'");
+    if ($post_all_edit->photo_name != "false") {
+        mysqli_query($connection, "UPDATE `articles` SET `img`='" . $post_all_edit->photo_name . "' WHERE `id`='" . $post_all_edit->post_id . "'");
     };
     var_dump($post_all_edit);
-    
+
 
     if ($_FILES['customFile']['error'] === UPLOAD_ERR_OK) {
         $filename = $_FILES['customFile']['name'];
@@ -86,8 +86,7 @@ if (isset($_POST["post_all_edit"])) {
         if (move_uploaded_file($file_tmp, $upload_file)) {
             chmod($upload_file, 0666);
             echo $filename;
-            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename . "' WHERE `id`='" . $post_all_edit -> post_id . "' ");
-            
+            mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename . "' WHERE `id`='" . $post_all_edit->post_id . "' ");
         } else {
             echo 'Error: Unable to move uploaded file.';
         };
@@ -107,3 +106,23 @@ if (isset($_POST["post_all_edit"])) {
 //         mysqli_query($connection, "UPDATE `articles` SET `img`='" . $_POST["photo_name"] . "' WHERE `id`='" . $_POST["post_id"] . "'");
 //     };
 // };
+
+if ($_FILES['add_photo']['error'] === UPLOAD_ERR_OK) {
+ 
+    $filename_add = $_FILES['add_photo']['name'];
+    $file_tmp_add = $_FILES['add_photo']['tmp_name'];
+    $max_size_add = 2 * 1024 * 1024;
+        if ($_FILES['add_photo']['size'] > $max_size_add) {
+            echo 'ERROR: File size is too large';
+            exit;
+        };
+        $upload_dir_add = 'img/';
+        $upload_file_add = $upload_dir_add . $filename_add;
+        if (move_uploaded_file($file_tmp_add, $upload_file_add)) {
+            chmod($upload_file_add, 0666);
+            echo $filename_add;
+            //mysqli_query($connection, "UPDATE `articles` SET `img`='" . $filename . "' WHERE `id`='" . $post_all_edit->post_id . "' ");
+        } else {
+            echo 'Error: Unable to move uploaded file.';
+        };
+};

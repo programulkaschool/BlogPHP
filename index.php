@@ -2,8 +2,6 @@
 
 <?php include("./includes/header.php") ?>
 
-<?php $categor_all = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `post_look` ");
-?>
 
 <div id="content">
     <div class="container">
@@ -14,13 +12,7 @@
                     ?>
                     <a href="#">Всі пости</a>
                     <h3>Нові пости в блозі</h3>
-                    <div class="block_content">
-                        <div class="articles articles_horizontal new_post">
-
-
-                            <?php
-                            while ($cati = mysqli_fetch_assoc($categor)) {
-
+                    <div class="block_content">132
                             ?>
                                 <article class="article">
                                     <div class="article_image" style="background-image: url('/img/<?php echo $cati["img"] ?>');">
@@ -45,7 +37,6 @@
                                     </div>
 
                                 </article>
-                            <?php }; ?>
 
 
 
