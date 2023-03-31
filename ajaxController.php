@@ -50,7 +50,7 @@ if (isset($_POST['admin_add_btn'])) {
 }
 
 if (isset($_POST['admin_upd_btn']) && isset($_POST['val_admin'])) {
-    
+
     mysqli_query($connection, "UPDATE `articles_categories` SET `title` ='" . $_POST['val_admin'] . "' WHERE `id` =" . $_POST['admin_upd_btn']);
 }
 
@@ -60,16 +60,45 @@ if (isset($_POST['title_sc']) && isset($_POST['text_sc']) && isset($_POST['selec
 
     $result = mysqli_query($connection, "INSERT INTO `articles` (`title`,`text`,`categorie_id`,`pubdate`,`post_look`) VALUES ('" . $_POST['title_sc'] . "','" . $_POST['text_sc'] . "','" . $_POST['select_sc'] . "',NOW(),'" . $post_scd . "')");
 
-if (!$result) {
-    die('Помилка запиту: ' . mysqli_error($connection));
-}
+    if (!$result) {
+        die('Помилка запиту: ' . mysqli_error($connection));
+    }
     //echo $_POST['title_sc'];
 }
 
-if(isset($_POST['title_edit']) && isset($_POST['text_edit']) && isset($_POST['select_edit']) && isset($_POST['showimg']) && isset($_POST['sv_post']) && isset($_POST['checkbox_edit'])){
+if (isset($_POST['title_edit']) && isset($_POST['text_edit']) && isset($_POST['select_edit']) && isset($_POST['showimg']) && isset($_POST['sv_post']) && isset($_POST['checkbox_edit'])) {
     $_POST['checkbox_edit'] == "true" ? $post_edit = 1 : $post_edit =  0;
-    $result = mysqli_query($connection, "UPDATE `articles` SET `title` ='" . $_POST['title_edit'] . "', `text` ='" . $_POST['text_edit'] . "', `categorie_id` ='" . $_POST['select_edit'] . "', `img` ='" . $_POST['showimg']. "', `post_look` = '" . $post_edit ."' WHERE `id`='" . $_POST['sv_post'] . "'");
+    $result = mysqli_query($connection, "UPDATE `articles` SET `title` ='" . $_POST['title_edit'] . "', `text` ='" . $_POST['text_edit'] . "', `categorie_id` ='" . $_POST['select_edit'] . "', `img` ='" . $_POST['showimg'] . "', `post_look` = '" . $post_edit . "' WHERE `id`='" . $_POST['sv_post'] . "'");
     if (!$result) {
         die('Помилка запиту: ' . mysqli_error($connection));
+    }
+}
+
+
+if (isset($_FILES['customFile'])) {
+    //var_dump($_FILES['customFile']);
+}
+
+if ($_FILES['customFile']['error'] == UPLOAD_ERR_OK) {
+    $_POST['id_edit_photo'];
+    $file_name = $_FILES['customFile']['name'];
+    $file_tmp = $_FILES['customFile']['tmp_name'];
+    $file_size = 1 * 1024 * 1024;
+    if ($_FILES['customFile']['size'] > $file_size) {
+        echo 'error: завеликий розмір файлу';
+        exit;
+    };
+    $upload_dir = 'img/';
+    $upload_file = $upload_dir . $file_name;
+    if (move_uploaded_file($file_tmp, $upload_file)) {
+        chmod($upload_file, 0666);
+    };
+    echo $_POST['id_edit_photo'];
+    if (isset($_POST['id_edit_photo']) && $_FILES['customFile']['name']) {
+
+        $result = mysqli_query($connection, "UPDATE `articles` SET  `img` ='" . $_FILES['customFile']['name'] . "' WHERE `id`='" . $_POST['id_edit_photo'] . "'");
+        if (!$result) {
+            die('Помилка запиту: ' . mysqli_error($connection));
+        }
     }
 }

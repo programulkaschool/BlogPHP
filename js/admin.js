@@ -121,9 +121,14 @@ jQuery(document).ready(function () {
             jQuery("#overlay").fadeOut();
         }
     });
-
+    var showimg;
     jQuery("body").on("click", ".responsive img", function () {
         jQuery(".text-center .img-thumbnail").attr("src", jQuery(this).attr("src"))
+
+
+
+        var editimg = jQuery(this).attr("src").split("/")
+        showimg = editimg[editimg.length - 1];
 
     });
 
@@ -134,8 +139,14 @@ jQuery(document).ready(function () {
         var checkbox_edit = jQuery('#check_edit').is(':checked');
         var img_edit = jQuery("#img_center img").attr("src");
         var sv_post = jQuery(this).attr("sv_edit");
-        var editimg = img_edit.split("/");
-        var showimg = editimg[editimg.length - 1];
+
+        var edit_photo = jQuery("#upload_inputFile")[0].files[0];
+        var formData = new FormData();
+
+        if (showimg == undefined) {
+            showimg = false;
+        } 
+        console.log(showimg);
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
@@ -148,6 +159,43 @@ jQuery(document).ready(function () {
 
             }
         })
+    });
+
+
+    jQuery("body").on("click", "#save_button_photo", function () {
+
+        var edit_photo = jQuery("#upload_inputFile")[0].files[0];
+        var formData = new FormData();
+        var id_edit_photo = jQuery("#save_button").attr("sv_edit");
+
+       /* formData.append('customFile', edit_photo);
+        formData.append('id_edit_photo', id_edit_photo);
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data, status, xhr) {
+                alert(data);
+                location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+
+            }
+
+        })*/
+
+    });
+    jQuery('#upload_inputFile').on('change', function () {
+
+        var file_edit = this.files[0];
+        console.log(file_edit);
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            jQuery('#image_preview').attr('src', event.target.result);
+        }
+        reader.readAsDataURL(file_edit);
     });
 });
 

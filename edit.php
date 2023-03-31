@@ -39,13 +39,16 @@ include("./includes/header.php"); ?>
                             </select>
 
                             <div class="input-group mb-3">
-                                <input type="file" class="form-control" id="inputGroupFile02">
+                                <input type="file" class="form-control" id="upload_inputFile">
                             </div>
+                            <button class="btn btn-primary" type="submit" id="save_button_photo">Save photo</button>
+
+
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" id="check_edit" edit_checkbox="<?php echo $articles_edit['id']; ?>" <?php echo $onp; ?>>
                             </div>
                             <div class="text-center" id="img_center">
-                                <img src="/img/<?php echo $articles_edit['img'] ?>" class="img-thumbnail" alt="...">
+                                <img src="/img/<?php echo $articles_edit['img'] ?>" class="img-thumbnail" alt="..." id="image_preview">
                             </div>
                             <button class="btn btn-primary" type="submit" id="edit_btn">Edit</button>
                             <?php $gallery_img = mysqli_query($connection, "SELECT `img` FROM `articles`"); ?>
@@ -54,12 +57,12 @@ include("./includes/header.php"); ?>
                                 <div class="gallery" id="gallery">
                                     <?php while ($gall = mysqli_fetch_assoc($gallery_img)) { ?>
                                         <div class="responsive">
-                                            <img src="/img/<?php echo $gall['img'] ?>" alt="">
+                                            <img src="/img/<?php echo $gall['img'] ?>" alt="" >
                                         </div>
                                     <?php } ?>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit" id="save_button" sv_edit="<?php echo $articles_edit['id']?>">Save</button>
+                            <button class="btn btn-primary" type="submit" id="save_button" sv_edit="<?php echo $articles_edit['id'] ?>">Save</button>
                         </div>
                     </div>
                 </div>
