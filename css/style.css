@@ -385,6 +385,15 @@ h6 {
     font-weight: 300;
 }
 
+.articles.articles_vertical.new_post {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.article {
+    margin-bottom: 20px;
+}
 
 
 @media(max-width:1000px) {
@@ -486,11 +495,11 @@ h6 {
     object-fit: cover;
     height: 200px;
     cursor: pointer;
-    transition: all 0.3s  ease;
+    transition: all 0.3s ease;
 }
 
-.responsive img:hover{
+.responsive img:hover {
     box-shadow: rgba(255, 255, 255, 0.356) 0px 10px 20px, rgba(255, 255, 255, 0.23) 0px 6px 6px;
-    border:2px solid #f1f1f1;
+    border: 2px solid #f1f1f1;
 
 }

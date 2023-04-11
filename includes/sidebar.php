@@ -10,7 +10,7 @@
 
         <div class="block_content">
             <div class="articles articles_vertical new_post">
-                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `views` DESC LIMIT 5"); ?>
+                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` WHERE `post_look`=1 ORDER BY `views` DESC LIMIT 5"); ?>
 
                 <?php while ($articles = mysqli_fetch_assoc($articles_select)) { ?>
 

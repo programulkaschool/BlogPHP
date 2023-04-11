@@ -4,7 +4,7 @@ include("./includes/header.php"); ?>
 <div id="content">
     <div class="container">
         <div class="row">
-            <?php $articles = mysqli_query($connection, "SELECT * FROM articles WHERE id=" . (int)$_GET['id']);
+            <?php $articles = mysqli_query($connection, "SELECT * FROM articles WHERE id=" . (int)$_GET['id'] ." AND `post_look`=1");
             if (mysqli_num_rows($articles) <= 0) { ?>
 
 

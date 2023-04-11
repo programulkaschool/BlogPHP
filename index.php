@@ -11,7 +11,7 @@ include("./includes/header.php");?>
                             <a href="#">Всі пости</a>
                             <h3>Нові пости у блозі</h3>
                             <div class="block_content">
-                                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 6"); ?>
+                                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` WHERE `post_look`=1 ORDER BY `id` DESC LIMIT 6"); ?>
                                 <div class="articles articles_horizontal new_post">
 
                                     <?php while($articles = mysqli_fetch_assoc($articles_select)) { ?> 
@@ -50,7 +50,7 @@ include("./includes/header.php");?>
                             <a href="#">Всі пости</a>
                             <h3>Програмування</h3>
                             <div class="block_content">
-                                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` WHERE  `categorie_id` = 2 LIMIT 6"); ?>
+                                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` WHERE  `categorie_id` = 2 AND `post_look`=1 LIMIT 6"); ?>
                                 <div class="articles articles_horizontal new_post">
 
                                     <?php while($articles = mysqli_fetch_assoc($articles_select)) { ?> 
@@ -90,7 +90,7 @@ include("./includes/header.php");?>
                             <a href="#">Всі пости</a>
                             <h3>Безпека</h3>
                             <div class="block_content">
-                                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` WHERE  `categorie_id` = 1 ORDER BY `id` DESC LIMIT 6"); ?>
+                                <?php $articles_select = mysqli_query($connection, "SELECT * FROM `articles` WHERE  `categorie_id` = 1 AND `post_look`=1  ORDER BY `id` DESC LIMIT 6"); ?>
                                 <div class="articles articles_horizontal new_post">
 
                                     <?php while($articles = mysqli_fetch_assoc($articles_select)) { ?> 

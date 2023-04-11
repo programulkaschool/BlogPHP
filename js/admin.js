@@ -88,29 +88,12 @@ jQuery(document).ready(function () {
             }
         })
     });
-    jQuery("body").on("click", "#save_btn", function () {
-        var title_sc = jQuery('#title_scd').val();
-        var text_sc = jQuery('#text_scd').val();
-        var select_sc = jQuery('#select_scd option:selected').val();
-        var checkbox_sc = jQuery('#check_scd').is(':checked');
 
-        console.log(title_sc);
-        console.log(text_sc);
-        console.log(select_sc); console.log(checkbox_sc);
 
-        jQuery.ajax({
-            url: 'ajaxController.php',
-            type: 'Post',
-            data: { title_sc: title_sc, text_sc: text_sc, select_sc: select_sc, checkbox_sc: checkbox_sc },
-            success: function (data, status, xhr) {
-                console.log(data);
-                //location.reload();
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
+   
 
-            }
-        })
-    });
+
+
     jQuery("body").on("click", "#edit_btn", function () {
         jQuery("#overlay").fadeIn();
     });
@@ -142,15 +125,47 @@ jQuery(document).ready(function () {
 
         var edit_photo = jQuery("#upload_inputFile")[0].files[0];
         var formData = new FormData();
-
+        formData.append('customFile', edit_photo);
         if (showimg == undefined) {
             showimg = false;
-        } 
-        console.log(showimg);
+        }
+        var edit_obj = { title_edit: title_edit, text_edit: text_edit, select_edit: select_edit, checkbox_edit: checkbox_edit, showimg: showimg, sv_post: sv_post };
+        console.log(edit_obj);
+        formData.append('edit_obj', JSON.stringify(edit_obj));
+
         jQuery.ajax({
             url: 'ajaxController.php',
             type: 'Post',
-            data: { title_edit: title_edit, text_edit: text_edit, select_edit: select_edit, checkbox_edit: checkbox_edit, showimg: showimg, sv_post: sv_post },
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data, status, xhr) {
+                console.log(data);
+                //location.reload();
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+
+            }
+        })
+    });
+
+    jQuery("body").on("click", "#save_btn", function () {
+        var add_post_obj ={
+        title_sc: jQuery('#title_scd').val(),
+        text_sc: jQuery('#text_scd').val(),
+        select_sc: jQuery('#select_scd option:selected').val(),
+        checkbox_sc: jQuery('#check_scd').is(':checked')
+        }
+        var edit_photo_second = jQuery("#upload_inputFile")[0].files[0];
+        var formData = new FormData();
+        formData.append('second_edit', add_post_obj);
+        formData.append('second_edit', JSON.stringify(edit_photo_second));
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            processData: false,
+            contentType: false,
+            data: { title_sc: title_sc, text_sc: text_sc, select_sc: select_sc, checkbox_sc: checkbox_sc },
             success: function (data, status, xhr) {
                 console.log(data);
                 //location.reload();
@@ -168,23 +183,23 @@ jQuery(document).ready(function () {
         var formData = new FormData();
         var id_edit_photo = jQuery("#save_button").attr("sv_edit");
 
-       /* formData.append('customFile', edit_photo);
-        formData.append('id_edit_photo', id_edit_photo);
-        jQuery.ajax({
-            url: 'ajaxController.php',
-            type: 'Post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (data, status, xhr) {
-                alert(data);
-                location.reload();
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-
-            }
-
-        })*/
+        /* formData.append('customFile', edit_photo);
+         formData.append('id_edit_photo', id_edit_photo);
+         jQuery.ajax({
+             url: 'ajaxController.php',
+             type: 'Post',
+             data: formData,
+             processData: false,
+             contentType: false,
+             success: function (data, status, xhr) {
+                 alert(data);
+                 location.reload();
+             },
+             error: function (jqXhr, textStatus, errorMessage) {
+ 
+             }
+ 
+         })*/
 
     });
     jQuery('#upload_inputFile').on('change', function () {

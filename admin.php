@@ -30,7 +30,7 @@ include("./includes/header.php"); ?>
                         <tbody><?php
 
 
-                                $table_select = mysqli_query($connection, "SELECT * FROM `articles`");
+                                $table_select = mysqli_query($connection, "SELECT * FROM `articles` ");
                                 while ($table = mysqli_fetch_assoc($table_select)) {
 
                                     foreach ($categories as $cat) {
@@ -91,7 +91,7 @@ include("./includes/header.php"); ?>
                                 </select>
 
                                 <div class="input-group mb-3">
-                                    <input type="file" class="form-control" id="inputGroupFile02">
+                                    <input type="file" class="form-control" id="img_second_edit">
                                 </div>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" role="switch" id="check_scd" >

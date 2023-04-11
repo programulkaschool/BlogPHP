@@ -6,7 +6,7 @@ include("./includes/header.php"); ?>
 <div id="content">
     <div class="container">
         <div class="row">
-            <?php $articles_categories = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id`=" . (int)$_GET['id']);
+            <?php $articles_categories = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id`=" . (int)$_GET['id'] ." AND `post_look`=1");
             if (mysqli_num_rows($articles_categories) <= 0) { ?>
 
 

@@ -75,8 +75,17 @@ if (isset($_POST['title_edit']) && isset($_POST['text_edit']) && isset($_POST['s
 }
 
 
-if (isset($_FILES['customFile'])) {
-    //var_dump($_FILES['customFile']);
+if (isset($_POST['edit_obj'])) {
+
+    $decode_json = json_decode($_POST['edit_obj']);
+
+    $decode_json->checkbox_edit == true ? $post_edit = 1 : $post_edit =  0;
+    $result = mysqli_query($connection, "UPDATE `articles` SET `title` ='" . $decode_json->title_edit . "', `text` ='" . $decode_json->text_edit . "', `categorie_id` ='" . $decode_json->select_edit . "', `post_look` = '" . $post_edit . "' WHERE `id`='" . $decode_json->sv_post . "'");
+
+    var_dump($decode_json);
+    if ($decode_json->showimg != false) {
+        mysqli_query($connection, "UPDATE `articles` SET  `img` ='" . $decode_json->showimg . "' WHERE `id`='" . $decode_json->sv_post . "'");
+    }
 }
 
 if ($_FILES['customFile']['error'] == UPLOAD_ERR_OK) {
@@ -93,10 +102,10 @@ if ($_FILES['customFile']['error'] == UPLOAD_ERR_OK) {
     if (move_uploaded_file($file_tmp, $upload_file)) {
         chmod($upload_file, 0666);
     };
-    echo $_POST['id_edit_photo'];
-    if (isset($_POST['id_edit_photo']) && $_FILES['customFile']['name']) {
+    echo $decode_json->sv_post;
+    if (isset($decode_json->sv_post) && $_FILES['customFile']['name']) {
 
-        $result = mysqli_query($connection, "UPDATE `articles` SET  `img` ='" . $_FILES['customFile']['name'] . "' WHERE `id`='" . $_POST['id_edit_photo'] . "'");
+        $result = mysqli_query($connection, "UPDATE `articles` SET  `img` ='" . $_FILES['customFile']['name'] . "' WHERE `id`='" . $decode_json->sv_post . "'");
         if (!$result) {
             die('Помилка запиту: ' . mysqli_error($connection));
         }
