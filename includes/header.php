@@ -10,6 +10,7 @@
                         <li><a href="/">Головна</a></li>
                         <li><a href="#">Про мене</a></li>
                         <li><a href="#">Instagram</a></li>
+                        <li><a href="../login.php">Увійти</a></li>
                     </ul>
                 </nav>
             </div>

@@ -111,3 +111,10 @@ if ($_FILES['customFile']['error'] == UPLOAD_ERR_OK) {
         }
     }
 }
+
+if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+    $result = mysqli_query($connection, "INSERT INTO `users` (`username`, `password`, `email`) VALUES ('" . $_POST['username'] . "', '" . $_POST['password'] . "', '" . $_POST['email'] . "')");
+    if (!$result) {
+        die('Помилка запиту: ' . mysqli_error($connection));
+    }
+}

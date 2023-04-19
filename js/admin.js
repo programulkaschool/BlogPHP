@@ -90,7 +90,7 @@ jQuery(document).ready(function () {
     });
 
 
-   
+
 
 
 
@@ -150,11 +150,11 @@ jQuery(document).ready(function () {
     });
 
     jQuery("body").on("click", "#save_btn", function () {
-        var add_post_obj ={
-        title_sc: jQuery('#title_scd').val(),
-        text_sc: jQuery('#text_scd').val(),
-        select_sc: jQuery('#select_scd option:selected').val(),
-        checkbox_sc: jQuery('#check_scd').is(':checked')
+        var add_post_obj = {
+            title_sc: jQuery('#title_scd').val(),
+            text_sc: jQuery('#text_scd').val(),
+            select_sc: jQuery('#select_scd option:selected').val(),
+            checkbox_sc: jQuery('#check_scd').is(':checked')
         }
         var edit_photo_second = jQuery("#upload_inputFile")[0].files[0];
         var formData = new FormData();
@@ -212,6 +212,60 @@ jQuery(document).ready(function () {
         }
         reader.readAsDataURL(file_edit);
     });
+
+    jQuery('.btn_log').click(function (event) {
+        event.preventDefault();
+    });
+
+    jQuery('.btn_sign').click(function (event) {
+        event.preventDefault();
+    });
+
+    jQuery('.btn_signup').click(function (event) {
+        event.preventDefault();
+    });
+    jQuery(".register_user").hide();
+
+    jQuery("body").on("click", ".btn_sign", function () {
+        jQuery(".register_user").fadeIn(1000);
+        jQuery(".login_user").fadeOut(20);
+    });
+
+    jQuery("body").on("click", ".btn_signup", function () {
+        var username = jQuery("#username2").val();
+        var email = jQuery("#email2").val();
+        var password = jQuery("#password2").val();
+
+
+
+        if (jQuery('#password2') === jQuery('#password3')) {
+        if (password.length >= 6) {
+            var audit = password.split("").filter(e => isNaN(e));
+            var digits = password.split("").filter(e => !isNaN(e));
+            console.log(digits);
+            console.log(audit);
+            if (audit.length >= 2 && digits.length >= 2) {
+
+            console.log(123);
+            jQuery.ajax({
+                url: 'ajaxController.php',
+                type: 'Post',
+                data: { username: username, email: email, password: password },
+                success: function (data, status, xhr) {
+                    console.log(data);
+                    // location.reload();
+
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+
+                }
+            })
+        }
+        }
+
+    }
+    });
+
 });
 
 

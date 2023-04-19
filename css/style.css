@@ -503,3 +503,44 @@ h6 {
     border: 2px solid #f1f1f1;
 
 }
+
+
+form.login_user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button.btn_log, .btn_sign {
+    width: 150px;
+    margin: 10px;
+    background-color: black;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    height: 35px;
+}
+
+#username1, #password1{
+    width: 324px;
+}
+
+form.register_user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button.btn_signup {
+    width: 324px;
+    margin: 10px;
+    background-color: black;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    height: 35px;
+}
+
+#username2, #password2, #password3, #email2{
+    width: 324px;
+}
