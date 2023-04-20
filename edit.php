@@ -1,5 +1,11 @@
 <?php include("./includes/head.php");
 include("./includes/header.php"); ?>
+<?php
+session_start();
+
+if ($_SESSION['role'] == 'admin') {
+?>
+
 
 <div id="content">
     <div class="container">
@@ -70,6 +76,10 @@ include("./includes/header.php"); ?>
         </div>
     </div>
 </div>
+<?php }
+else {
+    echo 'Сторінку не знайдено';
+}?>
 </div>
 <?php include("./includes/footer.php"); ?>
 <script src="./js/admin.js"></script>

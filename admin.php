@@ -1,5 +1,14 @@
 <?php include("./includes/head.php");
 include("./includes/header.php"); ?>
+<?php
+session_start();
+
+if ($_SESSION['role'] == 'admin') {
+?>
+
+
+
+
 
 <div id="content">
     <div class="container">
@@ -51,16 +60,16 @@ include("./includes/header.php"); ?>
                                     <td><?php echo $table["title"]; ?></td>
                                     <td><?php echo $art_cat; ?></td>
                                     <td><?php echo $table["pubdate"]; ?></td>
-                                    
+
                                     <td>
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" admin_checkbox="<?php echo $table['id']; ?>" <?php echo $on; ?>>
                                         </div>
-                                        
+
                                     </td>
-                                    <td><a href="/edit.php?id=<?php echo $table["id"];?>"><button class="btn btn-primary">Edit</button></a></td>
+                                    <td><a href="/edit.php?id=<?php echo $table["id"]; ?>"><button class="btn btn-primary">Edit</button></a></td>
                                     <td><button class="btn btn-primary" id="tr_btn" admin_btn="<?php echo $table['id'] ?>" type="submit">Видалити</button></td>
-                                    
+
                                 </tr>
                             <?php }; ?>
                         </tbody>
@@ -73,16 +82,16 @@ include("./includes/header.php"); ?>
                         <div class="row">
                             <div class="col">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" id="title_scd" >
+                                    <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" id="title_scd">
                                 </div>
                                 <div class="input-group">
-                                    <textarea class="form-control" aria-label="With textarea" id="text_scd" ></textarea>
+                                    <textarea class="form-control" aria-label="With textarea" id="text_scd"></textarea>
                                 </div>
 
                             </div>
                             <div class="col sel_inp">
 
-                                <select id="select_scd" class="form-select"  >
+                                <select id="select_scd" class="form-select">
                                     <option selected disabled>Виберіть категорію</option>
                                     <?php foreach ($categories as $cat) { ?>
 
@@ -94,7 +103,7 @@ include("./includes/header.php"); ?>
                                     <input type="file" class="form-control" id="img_second_edit">
                                 </div>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="check_scd" >
+                                    <input class="form-check-input" type="checkbox" role="switch" id="check_scd">
                                 </div>
                                 <button class="btn btn-primary" type="submit" id="save_btn">Save</button>
                             </div>
@@ -130,7 +139,12 @@ include("./includes/header.php"); ?>
         </div>
     </div>
 </div>
+<?php }
+else {
+    echo 'Сторінку не знайдено';
+}?>
 </div>
+
 <?php include("./includes/footer.php"); ?>
 <script src="./js/admin.js"></script>
 

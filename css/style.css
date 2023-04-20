@@ -544,3 +544,21 @@ button.btn_signup {
 #username2, #password2, #password3, #email2{
     width: 324px;
 }
+
+li.user {
+    position: relative;
+}
+
+a.logout {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+transition: all 0.7s ease-in-out;
+}
+
+li.user:hover a.logout{
+    opacity: 1;
+    top:60px;
+}

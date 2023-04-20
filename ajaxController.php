@@ -113,8 +113,39 @@ if ($_FILES['customFile']['error'] == UPLOAD_ERR_OK) {
 }
 
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
-    $result = mysqli_query($connection, "INSERT INTO `users` (`username`, `password`, `email`) VALUES ('" . $_POST['username'] . "', '" . $_POST['password'] . "', '" . $_POST['email'] . "')");
-    if (!$result) {
-        die('Помилка запиту: ' . mysqli_error($connection));
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+    $email_sql = mysqli_query($connection, "SELECT * FROM `users` WHERE `email` = '$email' OR `username` = '$username'");
+    if (mysqli_num_rows($email_sql) > 0) {
+        echo "користувач з такою електронною поштою або нікнеймом вже існує";
+        exit;
+    } else {
+        $result = mysqli_query($connection, "INSERT INTO `users` (`username`, `password`, `email`) VALUES ('" . $_POST['username'] . "', '" . $hashed_pass . "', '" . $_POST['email'] . "')");
+        if (!$result) {
+            die('Помилка запиту: ' . mysqli_error($connection));
+        }
+    }
+}
+
+if (isset($_POST['username_log'])  && isset($_POST['password_log'])) {
+    $us_em = $_POST['username_log'];
+    $password_log = $_POST['password_log'];
+    $log_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `password` = '$us_em' OR `username` = '$us_em'");
+    if (mysqli_num_rows($log_user) > 0) {
+        $row = mysqli_fetch_assoc($log_user);
+        if (password_verify($password_log, $row['password'])) {
+            session_start();
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['role'] = $row['role'];
+            echo "success";
+            exit();
+        }
+        else{
+            echo "невірний нікнейм або пароль";
+        }
+    } else {
+        echo "невірний нікнейм або пароль";
     }
 }

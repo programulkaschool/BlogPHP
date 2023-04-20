@@ -230,15 +230,12 @@ jQuery(document).ready(function () {
         jQuery(".register_user").fadeIn(1000);
         jQuery(".login_user").fadeOut(20);
     });
-
+            /* пароль */
     jQuery("body").on("click", ".btn_signup", function () {
         var username = jQuery("#username2").val();
         var email = jQuery("#email2").val();
         var password = jQuery("#password2").val();
-
-
-
-        if (jQuery('#password2') === jQuery('#password3')) {
+        if (jQuery('#password2').val() === jQuery('#password3').val()) {
         if (password.length >= 6) {
             var audit = password.split("").filter(e => isNaN(e));
             var digits = password.split("").filter(e => !isNaN(e));
@@ -246,7 +243,6 @@ jQuery(document).ready(function () {
             console.log(audit);
             if (audit.length >= 2 && digits.length >= 2) {
 
-            console.log(123);
             jQuery.ajax({
                 url: 'ajaxController.php',
                 type: 'Post',
@@ -265,6 +261,46 @@ jQuery(document).ready(function () {
 
     }
     });
+
+    jQuery("body").on("click", ".btn_log", function () {
+        var username_log = jQuery("#username1").val();
+        var password_log = jQuery("#password1").val();
+
+        jQuery.ajax({
+            url: 'ajaxController.php',
+            type: 'Post',
+            data: { username_log: username_log, password_log: password_log },
+            success: function (data, status, xhr) {
+                console.log(data);
+                // location.reload();
+                if(data == "success"){
+                    window.location.href = "/index.php";
+                }
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+
+            }
+        })
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
 
